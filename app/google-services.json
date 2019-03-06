@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "981585540799",
+    "firebase_url": "https://sleepasasymptom.firebaseio.com",
+    "project_id": "sleepasasymptom",
+    "storage_bucket": "sleepasasymptom.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981585540799:android:9b14374804e13859",
+        "android_client_info": {
+          "package_name": "com.companyname.SaaSAndroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981585540799-35v7gpmp5mpc3ai6dshljjvko38ak547.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.companyname.SaaSAndroid",
+            "certificate_hash": "9ab85511413e3b7c100a35eea7c52ecaeda12010"
+          }
+        },
+        {
+          "client_id": "981585540799-gfco6bgvsogo28h5ep0tivo32t2q2mhd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaBVGKRVfcBHkkLi6uE_nkvTpG4ELOkn4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981585540799-gfco6bgvsogo28h5ep0tivo32t2q2mhd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "981585540799-oceskc3v8jemp8dnbnun5fqspn2mec9u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.companyname.SaaSiOS"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
