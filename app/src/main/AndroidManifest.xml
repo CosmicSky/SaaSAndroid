@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.companyname.SaaSAndroid">
+    package="com.companyname.activities">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.companyname.activities.MainActivity"
             android:label="main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,15 +19,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="com.companyname.activities.LoginActivity"
             android:label="login" >
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name="com.companyname.activities.RegisterActivity"
             android:label="register" >
         </activity>
         <activity
-            android:name=".StudyActivity"
+            android:name="com.companyname.activities.StudyActivity"
             android:label="study" >
         </activity>
     </application>

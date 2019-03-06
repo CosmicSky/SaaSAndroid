@@ -1,4 +1,4 @@
-package com.companyname.SaaSAndroid;
+package com.companyname.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

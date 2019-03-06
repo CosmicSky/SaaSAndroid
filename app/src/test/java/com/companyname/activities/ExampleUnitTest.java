@@ -1,4 +1,4 @@
-package com.companyname.SaaSAndroid;
+package com.companyname.activities;
 
 import org.junit.Test;
 
