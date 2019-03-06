@@ -1,3 +1,11 @@
+//
+//  LoginActivity.java
+//  SaaSAndroid
+//
+//  Created by Tony Qi on 3/5/19.
+//  Copyright © 2019 Tony Qi. All rights reserved.
+//
+
 package com.companyname.activities;
 
 import android.os.Bundle;
