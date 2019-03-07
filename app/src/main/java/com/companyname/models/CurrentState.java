@@ -14,6 +14,7 @@ public class CurrentState {
     private static Authentication authentication = new FirebaseAuthentication();
     private static DatabaseService database = new FirebaseDatabaseService();
     private static StudyParticipant studyParticipant;
+    private static Study[] globalStudyList;
 
     public static Authentication getAuthentication() {
         return authentication;
@@ -29,5 +30,13 @@ public class CurrentState {
 
     public static void setStudyParticipant(StudyParticipant studyParticipant) {
         CurrentState.studyParticipant = studyParticipant;
+    }
+
+    public static Study[] getGlobalStudyList() {
+        return globalStudyList;
+    }
+
+    public static void setGlobalStudyList(Study[] globalStudyList) {
+        CurrentState.globalStudyList = globalStudyList;
     }
 }

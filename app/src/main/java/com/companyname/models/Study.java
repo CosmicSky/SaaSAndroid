@@ -11,19 +11,11 @@ package com.companyname.models;
 public class Study {
     private String name;
     private String description;
-    private String owner;
-    private String ownerEmail;
-    private String affiliation;
-    private String jobTitle;
-
-    Study(String name, String description, String owner, String ownerEmail, String affiliation,
-          String jobTitle){
+    private Researcher owner;
+    Study(String name, String description, Researcher owner){
         this.name = name;
         this.description = description;
         this.owner = owner;
-        this.ownerEmail = ownerEmail;
-        this.affiliation = affiliation;
-        this.jobTitle = jobTitle;
     }
 
     public String getName() {
@@ -34,19 +26,7 @@ public class Study {
         return description;
     }
 
-    public String getOwner() {
+    public Researcher getOwner() {
         return owner;
-    }
-
-    public String getOwnerEmail() {
-        return ownerEmail;
-    }
-
-    public String getAffiliation() {
-        return affiliation;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
     }
 }

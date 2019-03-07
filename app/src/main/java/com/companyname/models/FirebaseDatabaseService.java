@@ -21,4 +21,24 @@ public class FirebaseDatabaseService implements DatabaseService {
     public void addStudyParticipant(StudyParticipant studyParticipant, String userId) {
 
     }
+
+    @Override
+    public boolean retrieveStudyParticipant(String userId) {
+        return false;
+    }
+
+    @Override
+    public void resetStudyParticipant() {
+        CurrentState.setGlobalStudyList(null);
+    }
+
+    @Override
+    public boolean retrieveGlobalStudyList() {
+        return false;
+    }
+
+    @Override
+    public void joinStudy(String userId, Study study) {
+
+    }
 }
