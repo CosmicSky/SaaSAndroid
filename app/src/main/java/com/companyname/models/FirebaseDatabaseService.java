@@ -29,7 +29,7 @@ public class FirebaseDatabaseService implements DatabaseService {
 
     @Override
     public void resetStudyParticipant() {
-        CurrentState.setGlobalStudyList(null);
+        CurrentState.setStudyParticipant(null);
     }
 
     @Override
@@ -37,8 +37,16 @@ public class FirebaseDatabaseService implements DatabaseService {
         return false;
     }
 
+    private boolean retrieveOwner(String ownerId) {
+        return false;
+    }
+
     @Override
     public void joinStudy(String userId, Study study) {
 
+    }
+
+    public boolean retrieveIndividualStudyList(String userId) {
+        return false;
     }
 }

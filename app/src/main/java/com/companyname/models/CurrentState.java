@@ -15,6 +15,7 @@ public class CurrentState {
     private static DatabaseService database = new FirebaseDatabaseService();
     private static StudyParticipant studyParticipant;
     private static Study[] globalStudyList;
+    private static Study[] individualStudyList;
 
     public static Authentication getAuthentication() {
         return authentication;
@@ -38,5 +39,13 @@ public class CurrentState {
 
     public static void setGlobalStudyList(Study[] globalStudyList) {
         CurrentState.globalStudyList = globalStudyList;
+    }
+
+    public static Study[] getIndividualStudyList() {
+        return individualStudyList;
+    }
+
+    public static void setIndividualStudyList(Study[] individualStudyList) {
+        CurrentState.individualStudyList = individualStudyList;
     }
 }
