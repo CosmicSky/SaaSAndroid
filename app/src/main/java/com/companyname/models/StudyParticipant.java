@@ -17,7 +17,7 @@ public class StudyParticipant {
     private String email;
     private String password;
 
-    StudyParticipant(String firstName, String lastName, String birthDate, String zipCode,
+    public StudyParticipant(String firstName, String lastName, String birthDate, String zipCode,
                      String country, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

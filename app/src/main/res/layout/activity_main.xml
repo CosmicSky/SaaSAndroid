@@ -24,6 +24,15 @@
         android:layout_marginRight="50dp"
         android:singleLine="true"
         android:id="@+id/emailText" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Status" />
+
     <Button
         android:text="Login"
         android:layout_width="match_parent"
@@ -33,6 +42,7 @@
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
         android:id="@+id/loginButton" />
+
     <Button
         android:text="Register"
         android:layout_width="match_parent"

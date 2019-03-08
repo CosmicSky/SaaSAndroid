@@ -8,6 +8,7 @@
 
 package com.companyname.models;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseDatabaseService implements DatabaseService {
@@ -19,7 +20,8 @@ public class FirebaseDatabaseService implements DatabaseService {
 
     @Override
     public void addStudyParticipant(StudyParticipant studyParticipant, String userId) {
-
+        DatabaseReference dbReference = mDatabase.getReference("study_participant");
+        dbReference.child(userId).setValue(studyParticipant);
     }
 
     @Override
@@ -46,6 +48,7 @@ public class FirebaseDatabaseService implements DatabaseService {
 
     }
 
+    @Override
     public boolean retrieveIndividualStudyList(String userId) {
         return false;
     }

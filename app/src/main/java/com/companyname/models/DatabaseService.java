@@ -18,4 +18,6 @@ public interface DatabaseService {
     boolean retrieveGlobalStudyList();
 
     void joinStudy(String userId, Study study);
+
+    boolean retrieveIndividualStudyList(String userId);
 }

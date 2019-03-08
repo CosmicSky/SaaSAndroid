@@ -8,8 +8,6 @@
 
 package com.companyname.models;
 
-import com.google.firebase.database.FirebaseDatabase;
-
 public class CurrentState {
     private static Authentication authentication = new FirebaseAuthentication();
     private static DatabaseService database = new FirebaseDatabaseService();
