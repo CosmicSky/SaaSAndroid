@@ -15,11 +15,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.companyname.models.CurrentState;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText mEmail;
+    private TextView mEmail;
     private EditText mPassword;
 
     @Override
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.passwordLoginText);
         mEmail.setText(getIntent().getStringExtra("email"));
         Button mLogin = findViewById(R.id.loginAtLoginButton);
+        Button mForgotPassword = findViewById(R.id.forgotPasswordButton);
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,13 +45,27 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (CurrentState.getAuthentication().isSignedIn()) {
                     //todo retrieve studyparticipant info
-                    startActivity(new Intent(getApplicationContext(), StudyActivity.class));
+                    if (CurrentState.getAuthentication().isVerified()) {
+                        startActivity(new Intent(getApplicationContext(), StudyActivity.class));
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), AccountVerificationActivity.class));
+                    }
                 } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(getApplicationContext());
                     alert.setTitle("Incorrect Credentials");
                     alert.setMessage("Incorrect Credentials Entered. Please try again.");
                     alert.show();
                 }
+            }
+        });
+
+        mForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PasswordResetActivity.class);
+                intent.putExtra("email", mEmail.getText().toString());
+
+                startActivity(intent);
             }
         });
     }

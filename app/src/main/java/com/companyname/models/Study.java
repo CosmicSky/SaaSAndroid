@@ -12,10 +12,13 @@ public class Study {
     private String name;
     private String description;
     private Researcher owner;
-    Study(String name, String description, Researcher owner){
+    private String id;
+
+    Study(String name, String description, Researcher owner, String id){
         this.name = name;
         this.description = description;
         this.owner = owner;
+        this.id = id;
     }
 
     public String getName() {
@@ -28,5 +31,9 @@ public class Study {
 
     public Researcher getOwner() {
         return owner;
+    }
+
+    public String getId() {
+        return id;
     }
 }

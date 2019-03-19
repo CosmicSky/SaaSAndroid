@@ -23,13 +23,13 @@ public class FirebaseAuthentication implements Authentication {
     }
 
     @Override
-    public void signOut() {
-        mAuth.signOut();
+    public void register(StudyParticipant studyParticipant) {
+        mAuth.createUserWithEmailAndPassword(studyParticipant.getEmail(), studyParticipant.getPassword());
     }
 
     @Override
-    public void createStudyParticipant(String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password);
+    public void signOut() {
+        mAuth.signOut();
     }
 
     @Override

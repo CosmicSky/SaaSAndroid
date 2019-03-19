@@ -11,6 +11,7 @@ package com.companyname.activities;
 import com.companyname.models.CurrentState;
 import com.companyname.models.StudyParticipant;
 
+import android.accounts.Account;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -77,7 +78,15 @@ public class RegisterActivity extends AppCompatActivity{
                             " characters");
                     alert.show();
                 } else {
-                    CurrentState.getAuthentication().createStudyParticipant(mEmail.getText().toString(), mPassword.getText().toString());
+                    String firstName = mFirstName.getText().toString().substring(0, 1).toUpperCase()
+                            + mFirstName.getText().toString().substring(1);
+                    String lastName = mLastName.getText().toString().substring(0, 1).toUpperCase()
+                            + mLastName.getText().toString().substring(1);
+                    StudyParticipant newUser = new StudyParticipant(firstName, lastName,
+                            mDateOfBirth.getText().toString(), mZipCode.getText().toString(),
+                            mCountry.getText().toString(), mEmail.getText().toString(),
+                            mPassword.getText().toString());
+                    CurrentState.getAuthentication().register(newUser);
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -85,20 +94,10 @@ public class RegisterActivity extends AppCompatActivity{
                     }
                     if (CurrentState.getAuthentication().isSignedIn()) {
                         CurrentState.getAuthentication().sendVerificationLink();
-
-                        String firstName = mFirstName.getText().toString().substring(0, 1).toUpperCase()
-                                + mFirstName.getText().toString().substring(1);
-                        String lastName = mLastName.getText().toString().substring(0, 1).toUpperCase()
-                                + mLastName.getText().toString().substring(1);
-                        StudyParticipant newUser = new StudyParticipant(firstName, lastName,
-                                mDateOfBirth.getText().toString(), mZipCode.getText().toString(),
-                                mCountry.getText().toString(), mEmail.getText().toString(),
-                                mPassword.getText().toString());
                         String userId = CurrentState.getAuthentication().getUserId();
                         CurrentState.getDatabase().addStudyParticipant(newUser, userId);
 
-                        CurrentState.getAuthentication().signOut();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), AccountVerificationActivity.class));
                     } else {
                         AlertDialog.Builder alert = new AlertDialog.Builder(RegisterActivity.this);
                         alert.setTitle("Email Is Registered");

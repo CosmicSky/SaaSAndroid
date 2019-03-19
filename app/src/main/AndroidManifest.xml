@@ -30,6 +30,14 @@
             android:name="com.companyname.activities.StudyActivity"
             android:label="study" >
         </activity>
+        <activity
+            android:name="com.companyname.activities.AccountVerificationActivity"
+            android:label="accountVerification" >
+        </activity>
+        <activity
+            android:name=".PasswordResetActivity"
+            android:label="passwordReset"
+            />
     </application>
 
 </manifest>

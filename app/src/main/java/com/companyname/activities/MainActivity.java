@@ -29,10 +29,6 @@ public class MainActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.emailText);
         Button mLogin = findViewById(R.id.loginButton);
         Button mRegister = findViewById(R.id.registerButton);
-        TextView status = findViewById(R.id.textView);
-        if (CurrentState.getAuthentication().isSignedIn()) {
-            status.setText("signed in");
-        }
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override

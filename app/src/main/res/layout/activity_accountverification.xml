@@ -10,37 +10,28 @@
         android:layout_height="0dp"
         android:layout_weight="30"
         android:gravity="center"
-        android:textSize="50sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:text="SaaS Mobile"
-        android:id="@+id/welcomeText" />
-    <EditText
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:gravity="center"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:singleLine="true"
-        android:id="@+id/emailText" />
+        android:text="Please verify your account via the link sent to your email address."
+        android:id="@+id/verificationText" />
     <Button
-        android:text="Login"
+        android:text="Resend Verification"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
-        android:id="@+id/loginButton" />
+        android:id="@+id/verificationLinkButton" />
     <Button
-        android:text="Register"
+        android:text="Logout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
-        android:id="@+id/registerButton" />
+        android:id="@+id/logoutAtVerificationButton" />
 </LinearLayout>
