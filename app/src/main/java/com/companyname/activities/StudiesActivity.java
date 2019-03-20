@@ -15,8 +15,14 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 
+import com.companyname.models.CurrentState;
+import com.companyname.models.Study;
 import com.companyname.utilities.BottomNavigationViewHelper;
 
 public class StudiesActivity extends Activity {
@@ -25,6 +31,32 @@ public class StudiesActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studies);
+
+        ListView listView = findViewById(R.id.studiesList);
+
+        CurrentState.getDatabase().retrieveIndividualStudyList();
+        final ArrayAdapter<Study> arrayAdapter= new ArrayAdapter<>(this, R.layout.studylist, CurrentState.getIndividualStudyList());
+        listView.setAdapter(arrayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), StudyInformationActivity.class);
+                Study selectedItem = (arrayAdapter).getItem(position);
+                if (selectedItem != null) {
+                    intent.putExtra("studyId", selectedItem.getId());
+                    startActivity(intent);
+                }
+            }
+        });
+
+        Button mViewStudy = findViewById(R.id.viewStudyRepositoryButton);
+
+        mViewStudy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), StudyRepositoryActivity.class));
+            }
+        });
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);

@@ -8,6 +8,8 @@
 
 package com.companyname.models;
 
+import java.util.ArrayList;
+
 public class StudyParticipant {
     private String firstName;
     private String lastName;
@@ -70,4 +72,5 @@ public class StudyParticipant {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

@@ -8,12 +8,14 @@
 
 package com.companyname.models;
 
+import java.util.ArrayList;
+
 public class CurrentState {
     private static Authentication authentication = new FirebaseAuthentication();
     private static DatabaseService database = new FirebaseDatabaseService();
     private static StudyParticipant studyParticipant;
-    private static Study[] globalStudyList;
-    private static Study[] individualStudyList;
+    private static ArrayList<Study> globalStudyList = new ArrayList<>();
+    private static ArrayList<Study> individualStudyList = new ArrayList<>();
 
     public static Authentication getAuthentication() {
         return authentication;
@@ -31,19 +33,19 @@ public class CurrentState {
         CurrentState.studyParticipant = studyParticipant;
     }
 
-    public static Study[] getGlobalStudyList() {
+    public static ArrayList<Study> getGlobalStudyList() {
         return globalStudyList;
     }
 
-    public static void setGlobalStudyList(Study[] globalStudyList) {
+    public static void setGlobalStudyList(ArrayList<Study> globalStudyList) {
         CurrentState.globalStudyList = globalStudyList;
     }
 
-    public static Study[] getIndividualStudyList() {
+    public static ArrayList<Study> getIndividualStudyList() {
         return individualStudyList;
     }
 
-    public static void setIndividualStudyList(Study[] individualStudyList) {
+    public static void setIndividualStudyList(ArrayList<Study> individualStudyList) {
         CurrentState.individualStudyList = individualStudyList;
     }
 }
