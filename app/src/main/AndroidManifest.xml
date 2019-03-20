@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.companyname.activities.MainActivity"
-            android:label="main">
+            android:label="Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,23 +20,35 @@
         </activity>
         <activity
             android:name="com.companyname.activities.LoginActivity"
-            android:label="login" >
+            android:label="Login" >
         </activity>
         <activity
             android:name="com.companyname.activities.RegisterActivity"
-            android:label="register" >
+            android:label="Register" >
         </activity>
         <activity
-            android:name="com.companyname.activities.StudyActivity"
-            android:label="study" >
+            android:name="com.companyname.activities.StudiesActivity"
+            android:label="Studies" >
+        </activity>
+        <activity
+            android:name="com.companyname.activities.DataActivity"
+            android:label="Data" >
+        </activity>
+        <activity
+            android:name="com.companyname.activities.ProfileActivity"
+            android:label="Profile" >
+        </activity>
+        <activity
+            android:name="com.companyname.activities.SettingsActivity"
+            android:label="Settings" >
         </activity>
         <activity
             android:name="com.companyname.activities.AccountVerificationActivity"
-            android:label="accountVerification" >
+            android:label="AccountVerification" >
         </activity>
         <activity
             android:name=".PasswordResetActivity"
-            android:label="passwordReset"
+            android:label="PasswordReset"
             />
     </application>
 

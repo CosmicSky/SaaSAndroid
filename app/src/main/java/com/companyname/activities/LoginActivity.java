@@ -37,24 +37,31 @@ public class LoginActivity extends AppCompatActivity {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CurrentState.getAuthentication().signIn(mEmail.getText().toString(), mPassword.getText().toString());
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (CurrentState.getAuthentication().isSignedIn()) {
-                    //todo retrieve studyparticipant info
-                    if (CurrentState.getAuthentication().isVerified()) {
-                        startActivity(new Intent(getApplicationContext(), StudyActivity.class));
-                    } else {
-                        startActivity(new Intent(getApplicationContext(), AccountVerificationActivity.class));
-                    }
-                } else {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(getApplicationContext());
-                    alert.setTitle("Incorrect Credentials");
-                    alert.setMessage("Incorrect Credentials Entered. Please try again.");
+                if (mPassword.getText().toString().isEmpty()) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                    alert.setTitle("Password is Empty");
+                    alert.setMessage("Password is empty. Please try again.");
                     alert.show();
+                } else {
+                    CurrentState.getAuthentication().signIn(mEmail.getText().toString(), mPassword.getText().toString());
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (CurrentState.getAuthentication().isSignedIn()) {
+                        //todo retrieve studyparticipant info
+                        if (CurrentState.getAuthentication().isVerified()) {
+                            startActivity(new Intent(getApplicationContext(), StudiesActivity.class));
+                        } else {
+                            startActivity(new Intent(getApplicationContext(), AccountVerificationActivity.class));
+                        }
+                    } else {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                        alert.setTitle("Incorrect Credentials");
+                        alert.setMessage("Incorrect Credentials Entered. Please try again.");
+                        alert.show();
+                    }
                 }
             }
         });
@@ -64,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PasswordResetActivity.class);
                 intent.putExtra("email", mEmail.getText().toString());
-
                 startActivity(intent);
             }
         });

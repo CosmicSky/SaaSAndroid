@@ -12,6 +12,7 @@ import com.companyname.models.CurrentState;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -30,13 +31,21 @@ public class MainActivity extends AppCompatActivity {
         Button mLogin = findViewById(R.id.loginButton);
         Button mRegister = findViewById(R.id.registerButton);
 
+        CurrentState.getAuthentication().signOut();
+
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                intent.putExtra("email", mEmail.getText().toString());
-
-                startActivity(intent);
+                if (mEmail.getText().toString().isEmpty()) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                    alert.setTitle("Email is Empty");
+                    alert.setMessage("Email is empty. Please try again.");
+                    alert.show();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    intent.putExtra("email", mEmail.getText().toString());
+                    startActivity(intent);
+                }
             }
         });
 

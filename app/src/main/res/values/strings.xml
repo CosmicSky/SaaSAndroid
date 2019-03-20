@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SaaSAndroid</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="navigation_studies">Studies</string>
+    <string name="navigation_data">Data</string>
+    <string name="navigation_profile">Profile</string>
+    <string name="navigation_settings">Settings</string>
 </resources>

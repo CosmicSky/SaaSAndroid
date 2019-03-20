@@ -44,7 +44,7 @@ public class FirebaseDatabaseService implements DatabaseService {
     }
 
     @Override
-    public void joinStudy(String userId, Study study) {
+    public void joinStudy(String userId, String studyId) {
 
     }
 

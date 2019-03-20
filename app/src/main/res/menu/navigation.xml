@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/navigation_home"
-        android:title="@string/title_home" />
+        android:id="@+id/navigationStudies"
+        android:title="@string/navigation_studies"
+        android:icon="@drawable/study"
+        app:showAsAction="withText"/>
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/navigationData"
+        android:title="@string/navigation_data"
+        android:icon="@drawable/data"
+        app:showAsAction="withText"/>
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigationProfile"
+        android:title="@string/navigation_profile"
+        android:icon="@drawable/profile"
+        app:showAsAction="withText"/>
+
+    <item
+        android:id="@+id/navigationSettings"
+        android:title="@string/navigation_settings"
+        android:icon="@drawable/setting"
+        app:showAsAction="withText"/>
 
 </menu>

@@ -41,7 +41,6 @@ public class AccountVerificationActivity extends AppCompatActivity {
         mLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CurrentState.getAuthentication().signOut();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });

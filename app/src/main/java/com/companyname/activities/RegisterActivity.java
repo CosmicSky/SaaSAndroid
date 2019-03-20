@@ -11,7 +11,6 @@ package com.companyname.activities;
 import com.companyname.models.CurrentState;
 import com.companyname.models.StudyParticipant;
 
-import android.accounts.Account;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
