@@ -15,18 +15,60 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.companyname.models.CurrentState;
+import com.companyname.models.StudyParticipant;
 import com.companyname.utilities.BottomNavigationViewHelper;
 
 public class ProfileActivity extends Activity {
+    private StudyParticipant currentUser;
+    private EditText mZipCode;
+    private EditText mCountry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        TextView mTextMessage = findViewById(R.id.profileMessage);
+        currentUser = CurrentState.getStudyParticipant();
+        TextView mFirstName = findViewById(R.id.firstNameUpdateText);
+        mFirstName.setText(currentUser.getFirstName());
+        TextView mLastName = findViewById(R.id.lastNameUpdateText);
+        mLastName.setText(currentUser.getLastName());
+        TextView mDateOfBirth = findViewById(R.id.dateOfBirthUpdateText);
+        mDateOfBirth.setText(currentUser.getBirthDate());
+        TextView mEmail = findViewById(R.id.emailUpdateText);
+        mEmail.setText(currentUser.getEmail());
+
+        mZipCode = findViewById(R.id.zipCodeUpdateText);
+        mZipCode.setText(currentUser.getZipCode());
+        mCountry = findViewById(R.id.countryUpdateText);
+        mCountry.setText(currentUser.getCountry());
+
+        Button mUpdate = findViewById(R.id.updateProfileButton);
+
+        mUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newZip = mZipCode.getText().toString();
+                String newCountry = mCountry.getText().toString();
+                StudyParticipant newUser = new StudyParticipant(currentUser.getFirstName(),
+                        currentUser.getLastName(), currentUser.getBirthDate(),
+                        newZip, newCountry, currentUser.getEmail());
+                CurrentState.getDatabase().addStudyParticipant(newUser, CurrentState.getAuthentication().getUserId());
+                CurrentState.getDatabase().retrieveStudyParticipant(CurrentState.getAuthentication().getUserId());
+                try {
+                    Thread.sleep(1200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            }
+        });
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);

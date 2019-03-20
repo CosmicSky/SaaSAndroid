@@ -11,7 +11,7 @@ package com.companyname.models;
 public interface Authentication {
     void signIn(String email, String password);
 
-    void register(StudyParticipant studyParticipant);
+    void register(String email, String password);
 
     void signOut();
 

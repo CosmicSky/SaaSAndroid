@@ -15,17 +15,24 @@ public class StudyParticipant {
     private String zipCode;
     private String country;
     private String email;
-    private String password;
+
+    public StudyParticipant() {
+        this.firstName = "default";
+        this.lastName = "default";
+        this.birthDate = "default";
+        this.zipCode = "default";
+        this.country = "default";
+        this.email = "default";
+    }
 
     public StudyParticipant(String firstName, String lastName, String birthDate, String zipCode,
-                     String country, String email, String password) {
+                     String country, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.zipCode = zipCode;
         this.country = country;
         this.email = email;
-        this.password = password;
     }
 
     public String getFirstName() {
@@ -62,13 +69,5 @@ public class StudyParticipant {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

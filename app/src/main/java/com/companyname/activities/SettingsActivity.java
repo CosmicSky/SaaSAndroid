@@ -15,7 +15,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import com.companyname.utilities.BottomNavigationViewHelper;
 
@@ -26,7 +27,22 @@ public class SettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        TextView mTextMessage = findViewById(R.id.settingsMessage);
+        Button mManageDevices = findViewById(R.id.manageDevicesButton);
+        Button mLogout = findViewById(R.id.logoutButton);
+
+        mManageDevices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ManageDevicesActivity.class));
+            }
+        });
+
+        mLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+            }
+        });
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);

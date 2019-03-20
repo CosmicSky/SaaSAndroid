@@ -16,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class PasswordResetActivity extends AppCompatActivity {
     private EditText mEmail;
@@ -34,7 +33,7 @@ public class PasswordResetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CurrentState.getAuthentication().resetPassword(mEmail.getText().toString());
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
             }
         });
     }

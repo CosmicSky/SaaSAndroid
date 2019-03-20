@@ -83,11 +83,10 @@ public class RegisterActivity extends AppCompatActivity{
                             + mLastName.getText().toString().substring(1);
                     StudyParticipant newUser = new StudyParticipant(firstName, lastName,
                             mDateOfBirth.getText().toString(), mZipCode.getText().toString(),
-                            mCountry.getText().toString(), mEmail.getText().toString(),
-                            mPassword.getText().toString());
-                    CurrentState.getAuthentication().register(newUser);
+                            mCountry.getText().toString(), mEmail.getText().toString());
+                    CurrentState.getAuthentication().register(mEmail.getText().toString(), mPassword.getText().toString());
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(1200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -95,6 +94,7 @@ public class RegisterActivity extends AppCompatActivity{
                         CurrentState.getAuthentication().sendVerificationLink();
                         String userId = CurrentState.getAuthentication().getUserId();
                         CurrentState.getDatabase().addStudyParticipant(newUser, userId);
+                        CurrentState.setStudyParticipant(newUser);
 
                         startActivity(new Intent(getApplicationContext(), AccountVerificationActivity.class));
                     } else {

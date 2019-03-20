@@ -11,7 +11,7 @@ package com.companyname.models;
 public interface DatabaseService {
     void addStudyParticipant(StudyParticipant studyParticipant, String userId);
 
-    boolean retrieveStudyParticipant(String userId);
+    void retrieveStudyParticipant(String userId);
 
     void resetStudyParticipant();
 

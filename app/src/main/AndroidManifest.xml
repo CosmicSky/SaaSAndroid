@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.companyname.activities.MainActivity"
+            android:name="com.companyname.activities.WelcomeActivity"
             android:label="Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +31,18 @@
             android:label="Studies" >
         </activity>
         <activity
+            android:name="com.companyname.activities.StudyInformationActivity"
+            android:label="StudyInformation" >
+        </activity>
+        <activity
+            android:name="com.companyname.activities.StudyRepositoryActivity"
+            android:label="StudyRepository" >
+        </activity>
+        <activity
+            android:name="com.companyname.activities.StudyRepositoryInformationActivity"
+            android:label="StudyRepositoryInformation" >
+        </activity>
+        <activity
             android:name="com.companyname.activities.DataActivity"
             android:label="Data" >
         </activity>
@@ -43,11 +55,15 @@
             android:label="Settings" >
         </activity>
         <activity
+            android:name="com.companyname.activities.ManageDevicesActivity"
+            android:label="ManageDevices" >
+        </activity>
+        <activity
             android:name="com.companyname.activities.AccountVerificationActivity"
             android:label="AccountVerification" >
         </activity>
         <activity
-            android:name=".PasswordResetActivity"
+            android:name="com.companyname.activities.PasswordResetActivity"
             android:label="PasswordReset"
             />
     </application>

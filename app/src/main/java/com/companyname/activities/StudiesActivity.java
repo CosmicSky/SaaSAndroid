@@ -26,8 +26,6 @@ public class StudiesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studies);
 
-        TextView mTextMessage = findViewById(R.id.studiesMessage);
-
         BottomNavigationView navigation = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);
         Menu menu = navigation.getMenu();

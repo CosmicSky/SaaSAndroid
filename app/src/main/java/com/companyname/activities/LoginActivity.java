@@ -45,12 +45,12 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     CurrentState.getAuthentication().signIn(mEmail.getText().toString(), mPassword.getText().toString());
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(1200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     if (CurrentState.getAuthentication().isSignedIn()) {
-                        //todo retrieve studyparticipant info
+                        CurrentState.getDatabase().retrieveStudyParticipant(CurrentState.getAuthentication().getUserId());
                         if (CurrentState.getAuthentication().isVerified()) {
                             startActivity(new Intent(getApplicationContext(), StudiesActivity.class));
                         } else {

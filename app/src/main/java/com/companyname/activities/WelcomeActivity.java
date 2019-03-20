@@ -1,5 +1,5 @@
 //
-//  MainActivity.java
+//  WelcomeActivity.java
 //  SaaSAndroid
 //
 //  Created by Tony Qi on 3/5/19.
@@ -17,27 +17,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
     private EditText mEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_welcome);
+
+        CurrentState.getAuthentication().signOut();
+        CurrentState.getDatabase().resetStudyParticipant();
 
         mEmail = findViewById(R.id.emailText);
         Button mLogin = findViewById(R.id.loginButton);
         Button mRegister = findViewById(R.id.registerButton);
 
-        CurrentState.getAuthentication().signOut();
-
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mEmail.getText().toString().isEmpty()) {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(WelcomeActivity.this);
                     alert.setTitle("Email is Empty");
                     alert.setMessage("Email is empty. Please try again.");
                     alert.show();
