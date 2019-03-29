@@ -36,4 +36,8 @@ public class Study {
     public String getId() {
         return id;
     }
+
+    public String toString() {
+        return name;
+    }
 }

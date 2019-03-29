@@ -19,7 +19,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="80"
+            android:layout_weight="88"
             android:textAlignment="center"
             android:minWidth="25dp"
             android:minHeight="25dp"
@@ -31,6 +31,7 @@
             android:layout_weight="12"
             android:layout_height="0dp"
             android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
             android:layout_marginLeft="75dp"
             android:layout_marginRight="75dp"
             android:id="@+id/viewStudyRepositoryButton" />

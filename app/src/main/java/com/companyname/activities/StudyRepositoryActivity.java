@@ -33,20 +33,21 @@ public class StudyRepositoryActivity extends Activity {
 
         ListView listView = findViewById(R.id.studyRepositoryList);
 
-        CurrentState.getDatabase().retrieveGlobalStudyList();
         final ArrayAdapter<Study> arrayAdapter= new ArrayAdapter<>(this, R.layout.studylist, CurrentState.getGlobalStudyList());
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), StudyRepositoryInformationActivity.class);
-                Study selectedItem = (arrayAdapter).getItem(position);
-                if (selectedItem != null) {
-                    intent.putExtra("studyId", selectedItem.getId());
-                    startActivity(intent);
+        if (listView != null) {
+            listView.setAdapter(arrayAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getApplicationContext(), StudyRepositoryInformationActivity.class);
+                    Study selectedItem = (arrayAdapter).getItem(position);
+                    if (selectedItem != null) {
+                        intent.putExtra("studyId", selectedItem.getId());
+                        startActivity(intent);
+                    }
                 }
-            }
-        });
+            });
+        }
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);

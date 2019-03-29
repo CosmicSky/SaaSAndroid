@@ -2,6 +2,86 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:weightSum="100">
 
+    <TextView
+        android:id="@+id/studyTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:text="Title"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    <TextView
+        android:id="@+id/studyDescription"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="40"
+        android:gravity="center"
+        android:text="Description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/studyContactInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Contact Information :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/studyName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/studyEmail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Email"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/studyJobTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Job Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/studyAffiliation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Affiliation"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 </LinearLayout>

@@ -23,8 +23,6 @@ import static android.content.ContentValues.TAG;
 
 public class FirebaseDatabaseService implements DatabaseService {
     private FirebaseDatabase mDatabase;
-    private Researcher owner;
-    private Study study;
 
     FirebaseDatabaseService(){
         mDatabase = FirebaseDatabase.getInstance();
@@ -72,14 +70,47 @@ public class FirebaseDatabaseService implements DatabaseService {
 
     @Override
     public void retrieveGlobalStudyList() {
-        DatabaseReference dbReference = mDatabase.getReference("study");
+        DatabaseReference dbReference = mDatabase.getReference();
         dbReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Study> globalStudyArrayList = new ArrayList<>();
-                for (DataSnapshot studySnapshot: dataSnapshot.getChildren()) {
-                    if (studySnapshot.child("status").getValue().toString().equals("active")) {
-                        Study currentStudy = retrieveStudy(studySnapshot.getKey());
+                DataSnapshot studySnapshot = dataSnapshot.child("study");
+                DataSnapshot researcherSnapshot = dataSnapshot.child("researchers");
+                DataSnapshot participantSnapshot = dataSnapshot.child("study_participant");
+                DataSnapshot userSnapshot = participantSnapshot.child(CurrentState.getAuthentication().getUserId());
+
+                inner:
+                for (DataSnapshot currentStudySnapshot: studySnapshot.getChildren()) {
+                    if (userSnapshot.hasChild("studies")) {
+                        DataSnapshot userStudySnapshot = userSnapshot.child("studies");
+                        for (DataSnapshot currentIndividualStudy: userStudySnapshot.getChildren()) {
+                            Log.w(TAG, "hehe");
+                            Log.w(TAG, currentStudySnapshot.getKey());
+                            Log.w(TAG, currentIndividualStudy.getValue().toString());
+                            if (currentStudySnapshot.getKey().equals(currentIndividualStudy.getValue().toString())){
+                                continue inner;
+                            }
+                        }
+                    }
+
+                    if (currentStudySnapshot.child("status").getValue().toString().equals("active")) {
+                        DataSnapshot currentStudyReference = studySnapshot.child(currentStudySnapshot.getKey());
+                        String name = currentStudyReference.child("name").getValue().toString();
+                        String description = currentStudyReference.child("desc").getValue().toString();
+                        String ownerId = currentStudyReference.child("owner").getValue().toString();
+
+                        DataSnapshot currentResearcherReference = researcherSnapshot.child(ownerId);
+//                        Researcher owner = researcherSnapshot.getValue(Researcher.class);
+                        String firstName = currentResearcherReference.child("firstName").getValue().toString();
+                        String lastName = currentResearcherReference.child("lastName").getValue().toString();
+                        String email = currentResearcherReference.child("email").getValue().toString();
+                        String affiliation = "place holder";
+                        String jobTitle = "place holder";
+
+                        Researcher owner = new Researcher(firstName, lastName, email, affiliation, jobTitle);
+                        Study study = new Study(name, description, owner, currentStudySnapshot.getKey());
+
                         globalStudyArrayList.add(study);
                     }
                 }
@@ -95,16 +126,35 @@ public class FirebaseDatabaseService implements DatabaseService {
 
     @Override
     public void retrieveIndividualStudyList() {
-        DatabaseReference dbReference = mDatabase.getReference("study_participant");
+        DatabaseReference dbReference = mDatabase.getReference();
         dbReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                DataSnapshot userSnapshot = dataSnapshot.child(CurrentState.getAuthentication().getUserId());
+                DataSnapshot participantSnapshot = dataSnapshot.child("study_participant");
+                DataSnapshot researcherSnapshot = dataSnapshot.child("researchers");
+                DataSnapshot studySnapshot = dataSnapshot.child("study");
+                DataSnapshot userSnapshot = participantSnapshot.child(CurrentState.getAuthentication().getUserId());
+
                 if (userSnapshot.hasChild("studies")) {
-                    DataSnapshot studiesSnapshot = userSnapshot.child("studies");
+                    DataSnapshot userStudySnapshot = userSnapshot.child("studies");
                     ArrayList<Study> individualStudyArrayList = new ArrayList<>();
-                    for (DataSnapshot studySnapshot: studiesSnapshot.getChildren()) {
-                        Study currentStudy = retrieveStudy(studySnapshot.getKey());
+                    for (DataSnapshot currentStudySnapshot: userStudySnapshot.getChildren()) {
+                        DataSnapshot currentStudyReference = studySnapshot.child(currentStudySnapshot.getValue().toString());
+                        String name = currentStudyReference.child("name").getValue().toString();
+                        String description = currentStudyReference.child("desc").getValue().toString();
+                        String ownerId = currentStudyReference.child("owner").getValue().toString();
+
+                        DataSnapshot currentResearcherReference = researcherSnapshot.child(ownerId);
+//                        Researcher owner = researcherSnapshot.getValue(Researcher.class);
+                        String firstName = currentResearcherReference.child("firstName").getValue().toString();
+                        String lastName = currentResearcherReference.child("lastName").getValue().toString();
+                        String email = currentResearcherReference.child("email").getValue().toString();
+                        String affiliation = "place holder";
+                        String jobTitle = "place holder";
+
+                        Researcher owner = new Researcher(firstName, lastName, email, affiliation, jobTitle);
+                        Study study = new Study(name, description, owner, currentStudySnapshot.getValue().toString());
+
                         individualStudyArrayList.add(study);
                     }
                     CurrentState.setIndividualStudyList(individualStudyArrayList);
@@ -116,49 +166,5 @@ public class FirebaseDatabaseService implements DatabaseService {
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         });
-    }
-
-    private Study retrieveStudy(final String studyId) {
-        DatabaseReference dbReference = mDatabase.getReference("study");
-        dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                DataSnapshot studySnapshot = dataSnapshot.child(studyId);
-                String name = studySnapshot.child("name").getValue().toString();
-                String description = studySnapshot.child("desc").getValue().toString();
-                String ownerId = studySnapshot.child("owner").getValue().toString();
-                Researcher owner = retrieveOwner(ownerId);
-                study = new Study(name, description, owner, studyId);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-            }
-        });
-        return study;
-    }
-
-    private Researcher retrieveOwner(final String ownerId) {
-        DatabaseReference dbReference = mDatabase.getReference("researchers");
-        dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                DataSnapshot researcherSnapshot = dataSnapshot.child(ownerId);
-//                Researcher owner = researcherSnapshot.getValue(Researcher.class);
-                String firstName = researcherSnapshot.child("firstName").getValue().toString();
-                String lastName = researcherSnapshot.child("lastName").getValue().toString();
-                String email = researcherSnapshot.child("email").getValue().toString();
-                String affiliation = "place holder";
-                String jobTitle = "place holder";
-                owner = new Researcher(firstName, lastName, email, affiliation, jobTitle);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-            }
-        });
-        return owner;
     }
 }

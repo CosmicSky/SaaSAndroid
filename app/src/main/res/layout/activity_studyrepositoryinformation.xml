@@ -2,6 +2,96 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:weightSum="100">
 
+    <TextView
+        android:id="@+id/studyRepositoryTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:text="Title"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    <TextView
+        android:id="@+id/studyRepositoryDescription"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="40"
+        android:gravity="center"
+        android:text="Description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/studyRepositoryContactInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Contact Information :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/studyRepositoryName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/studyRepositoryEmail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Email"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/studyRepositoryJobTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Job Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/studyRepositoryAffiliation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="6"
+        android:gravity="center"
+        android:text="Affiliation"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <Button
+        android:id="@+id/studyJoinButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="75dp"
+        android:layout_weight="12"
+        android:text="Join Study" />
 </LinearLayout>

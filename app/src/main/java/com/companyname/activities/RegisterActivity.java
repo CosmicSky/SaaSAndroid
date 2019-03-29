@@ -86,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity{
                             mCountry.getText().toString(), mEmail.getText().toString());
                     CurrentState.getAuthentication().register(mEmail.getText().toString(), mPassword.getText().toString());
                     try {
-                        Thread.sleep(1200);
+                        Thread.sleep(1500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

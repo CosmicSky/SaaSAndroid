@@ -45,13 +45,20 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     CurrentState.getAuthentication().signIn(mEmail.getText().toString(), mPassword.getText().toString());
                     try {
-                        Thread.sleep(1200);
+                        Thread.sleep(1500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     if (CurrentState.getAuthentication().isSignedIn()) {
                         CurrentState.getDatabase().retrieveStudyParticipant(CurrentState.getAuthentication().getUserId());
                         if (CurrentState.getAuthentication().isVerified()) {
+                            CurrentState.getDatabase().retrieveIndividualStudyList();
+                            CurrentState.getDatabase().retrieveGlobalStudyList();
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             startActivity(new Intent(getApplicationContext(), StudiesActivity.class));
                         } else {
                             startActivity(new Intent(getApplicationContext(), AccountVerificationActivity.class));

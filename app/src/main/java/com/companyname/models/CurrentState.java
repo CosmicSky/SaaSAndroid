@@ -37,7 +37,7 @@ public class CurrentState {
         return globalStudyList;
     }
 
-    public static void setGlobalStudyList(ArrayList<Study> globalStudyList) {
+    static void setGlobalStudyList(ArrayList<Study> globalStudyList) {
         CurrentState.globalStudyList = globalStudyList;
     }
 
@@ -45,7 +45,7 @@ public class CurrentState {
         return individualStudyList;
     }
 
-    public static void setIndividualStudyList(ArrayList<Study> individualStudyList) {
+    static void setIndividualStudyList(ArrayList<Study> individualStudyList) {
         CurrentState.individualStudyList = individualStudyList;
     }
 }

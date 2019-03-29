@@ -34,26 +34,29 @@ public class StudiesActivity extends Activity {
 
         ListView listView = findViewById(R.id.studiesList);
 
-        CurrentState.getDatabase().retrieveIndividualStudyList();
         final ArrayAdapter<Study> arrayAdapter= new ArrayAdapter<>(this, R.layout.studylist, CurrentState.getIndividualStudyList());
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), StudyInformationActivity.class);
-                Study selectedItem = (arrayAdapter).getItem(position);
-                if (selectedItem != null) {
-                    intent.putExtra("studyId", selectedItem.getId());
-                    startActivity(intent);
+        if (listView != null) {
+            listView.setAdapter(arrayAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getApplicationContext(), StudyInformationActivity.class);
+                    Study selectedItem = (arrayAdapter).getItem(position);
+                    if (selectedItem != null) {
+                        intent.putExtra("studyId", selectedItem.getId());
+                        startActivity(intent);
+                    }
                 }
-            }
-        });
+            });
+        }
 
         Button mViewStudy = findViewById(R.id.viewStudyRepositoryButton);
 
         mViewStudy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CurrentState.getDatabase().retrieveGlobalStudyList();
+                CurrentState.getDatabase().retrieveIndividualStudyList();
                 startActivity(new Intent(getApplicationContext(), StudyRepositoryActivity.class));
             }
         });
