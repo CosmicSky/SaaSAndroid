@@ -15,6 +15,14 @@ public class Researcher {
     private String affiliation;
     private String jobTitle;
 
+    public Researcher() {
+        this.firstName = "default";
+        this.lastName = "default";
+        this.email = "default";
+        this.affiliation = "default";
+        this.jobTitle = "default";
+    }
+
     Researcher(String firstName, String lastName, String email, String affiliation, String jobTitle){
         this.firstName = firstName;
         this.lastName = lastName;

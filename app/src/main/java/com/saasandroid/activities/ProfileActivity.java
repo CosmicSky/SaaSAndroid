@@ -40,7 +40,7 @@ public class ProfileActivity extends Activity {
         TextView mLastName = findViewById(R.id.lastNameUpdateText);
         mLastName.setText(currentUser.getLastName());
         TextView mDateOfBirth = findViewById(R.id.dateOfBirthUpdateText);
-        mDateOfBirth.setText(currentUser.getBirthDate());
+        mDateOfBirth.setText(currentUser.getBirthdate());
         TextView mEmail = findViewById(R.id.emailUpdateText);
         mEmail.setText(currentUser.getEmail());
 
@@ -57,7 +57,7 @@ public class ProfileActivity extends Activity {
                 String newZip = mZipCode.getText().toString();
                 String newCountry = mCountry.getText().toString();
                 StudyParticipant newUser = new StudyParticipant(currentUser.getFirstName(),
-                        currentUser.getLastName(), currentUser.getBirthDate(),
+                        currentUser.getLastName(), currentUser.getBirthdate(),
                         newZip, newCountry, currentUser.getEmail());
                 CurrentState.getDatabase().addStudyParticipant(newUser, CurrentState.getAuthentication().getUserId());
                 CurrentState.getDatabase().retrieveStudyParticipant(CurrentState.getAuthentication().getUserId());

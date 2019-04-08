@@ -34,7 +34,7 @@ public class ManageFitbitActivity extends Activity implements AuthenticationHand
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_managedevices);
+        setContentView(R.layout.activity_managefitbit);
 
         Button mLogin = findViewById(R.id.fitbitLoginButton);
 

@@ -11,7 +11,7 @@ package com.saasandroid.models;
 public class StudyParticipant {
     private String firstName;
     private String lastName;
-    private String birthDate;
+    private String birthdate;
     private String zipCode;
     private String country;
     private String email;
@@ -19,7 +19,7 @@ public class StudyParticipant {
     public StudyParticipant() {
         this.firstName = "default";
         this.lastName = "default";
-        this.birthDate = "default";
+        this.birthdate = "default";
         this.zipCode = "default";
         this.country = "default";
         this.email = "default";
@@ -29,7 +29,7 @@ public class StudyParticipant {
                      String country, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
+        this.birthdate = birthDate;
         this.zipCode = zipCode;
         this.country = country;
         this.email = email;
@@ -43,8 +43,8 @@ public class StudyParticipant {
         return lastName;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public String getBirthdate() {
+        return birthdate;
     }
 
     public String getZipCode() {

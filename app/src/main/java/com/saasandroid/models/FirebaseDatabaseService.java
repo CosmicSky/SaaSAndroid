@@ -33,7 +33,7 @@ public class FirebaseDatabaseService implements DatabaseService {
         DatabaseReference dbReference = mDatabase.getReference("study_participant");
         dbReference.child(userId).child("firstName").setValue(studyParticipant.getFirstName());
         dbReference.child(userId).child("lastName").setValue(studyParticipant.getLastName());
-        dbReference.child(userId).child("birthDate").setValue(studyParticipant.getBirthDate());
+        dbReference.child(userId).child("birthdate").setValue(studyParticipant.getBirthdate());
         dbReference.child(userId).child("zipCode").setValue(studyParticipant.getZipCode());
         dbReference.child(userId).child("country").setValue(studyParticipant.getCountry());
         dbReference.child(userId).child("email").setValue(studyParticipant.getEmail());
@@ -85,9 +85,6 @@ public class FirebaseDatabaseService implements DatabaseService {
                     if (userSnapshot.hasChild("studies")) {
                         DataSnapshot userStudySnapshot = userSnapshot.child("studies");
                         for (DataSnapshot currentIndividualStudy: userStudySnapshot.getChildren()) {
-                            Log.w(TAG, "hehe");
-                            Log.w(TAG, currentStudySnapshot.getKey());
-                            Log.w(TAG, currentIndividualStudy.getValue().toString());
                             if (currentStudySnapshot.getKey().equals(currentIndividualStudy.getValue().toString())){
                                 continue inner;
                             }
@@ -96,19 +93,12 @@ public class FirebaseDatabaseService implements DatabaseService {
 
                     if (currentStudySnapshot.child("status").getValue().toString().equals("active")) {
                         DataSnapshot currentStudyReference = studySnapshot.child(currentStudySnapshot.getKey());
-                        String name = currentStudyReference.child("name").getValue().toString();
-                        String description = currentStudyReference.child("desc").getValue().toString();
+                        String name = currentStudyReference.child("studyName").getValue().toString();
+                        String description = currentStudyReference.child("description").getValue().toString();
                         String ownerId = currentStudyReference.child("owner").getValue().toString();
 
                         DataSnapshot currentResearcherReference = researcherSnapshot.child(ownerId);
-//                        Researcher owner = researcherSnapshot.getValue(Researcher.class);
-                        String firstName = currentResearcherReference.child("firstName").getValue().toString();
-                        String lastName = currentResearcherReference.child("lastName").getValue().toString();
-                        String email = currentResearcherReference.child("email").getValue().toString();
-                        String affiliation = "place holder";
-                        String jobTitle = "place holder";
-
-                        Researcher owner = new Researcher(firstName, lastName, email, affiliation, jobTitle);
+                        Researcher owner = currentResearcherReference.getValue(Researcher.class);
                         Study study = new Study(name, description, owner, currentStudySnapshot.getKey());
 
                         globalStudyArrayList.add(study);
@@ -140,19 +130,12 @@ public class FirebaseDatabaseService implements DatabaseService {
                     ArrayList<Study> individualStudyArrayList = new ArrayList<>();
                     for (DataSnapshot currentStudySnapshot: userStudySnapshot.getChildren()) {
                         DataSnapshot currentStudyReference = studySnapshot.child(currentStudySnapshot.getValue().toString());
-                        String name = currentStudyReference.child("name").getValue().toString();
-                        String description = currentStudyReference.child("desc").getValue().toString();
+                        String name = currentStudyReference.child("studyName").getValue().toString();
+                        String description = currentStudyReference.child("description").getValue().toString();
                         String ownerId = currentStudyReference.child("owner").getValue().toString();
 
                         DataSnapshot currentResearcherReference = researcherSnapshot.child(ownerId);
-//                        Researcher owner = researcherSnapshot.getValue(Researcher.class);
-                        String firstName = currentResearcherReference.child("firstName").getValue().toString();
-                        String lastName = currentResearcherReference.child("lastName").getValue().toString();
-                        String email = currentResearcherReference.child("email").getValue().toString();
-                        String affiliation = "place holder";
-                        String jobTitle = "place holder";
-
-                        Researcher owner = new Researcher(firstName, lastName, email, affiliation, jobTitle);
+                        Researcher owner = currentResearcherReference.getValue(Researcher.class);
                         Study study = new Study(name, description, owner, currentStudySnapshot.getValue().toString());
 
                         individualStudyArrayList.add(study);
