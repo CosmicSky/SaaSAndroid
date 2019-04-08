@@ -10,6 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.fitbit.sampleandroidoauth2.CLIENT_ID"
+            android:value="22DGB9"/>
+        <meta-data
+            android:name="com.fitbit.sampleandroidoauth2.REDIRECT_URL"
+            android:value="SaaSAndroid://oauth-callback"/>
+
         <activity
             android:name="com.saasandroid.activities.WelcomeActivity"
             android:label="Welcome">
@@ -65,8 +73,16 @@
         </activity>
         <activity
             android:name="com.saasandroid.activities.PasswordResetActivity"
-            android:label="PasswordReset"
-            />
+            android:label="PasswordReset" >
+        </activity>
+        <activity
+            android:name="com.saasandroid.activities.ManageFitbitActivity"
+            android:label="ManageFitbit">
+        </activity>
+        <activity
+            android:name="com.saasandroid.activities.FitbitDevicesActivity"
+            android:label="FitbitDevices" >
+        </activity>
     </application>
 
 </manifest>
