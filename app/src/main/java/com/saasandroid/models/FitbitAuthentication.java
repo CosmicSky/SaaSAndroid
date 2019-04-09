@@ -8,15 +8,14 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import com.fitbit.authentication.AuthenticationConfiguration;
-import com.fitbit.authentication.AuthenticationConfigurationBuilder;
-import com.fitbit.authentication.AuthenticationManager;
-import com.fitbit.authentication.ClientCredentials;
-import com.fitbit.authentication.Scope;
-import com.saasandroid.activities.ManageDevicesActivity;
-import com.saasandroid.activities.ManageFitbitActivity;
+import com.saasandroid.authentication.AuthenticationConfiguration;
+import com.saasandroid.authentication.AuthenticationConfigurationBuilder;
+import com.saasandroid.authentication.AuthenticationManager;
+import com.saasandroid.authentication.ClientCredentials;
+import com.saasandroid.authentication.Scope;
+import com.saasandroid.authentication.activities.ManageFitbitActivity;
 
-import static com.fitbit.authentication.Scope.activity;
+import static com.saasandroid.authentication.Scope.activity;
 
 /**
  * Created by jboggess on 9/28/16.
@@ -56,8 +55,8 @@ public class FitbitAuthentication extends Application {
             Bundle bundle = ai.metaData;
 
             // Load clientId and redirectUrl from application manifest
-            String clientId = bundle.getString("com.fitbit.sampleandroidoauth2.CLIENT_ID");
-            String redirectUrl = bundle.getString("com.fitbit.sampleandroidoauth2.REDIRECT_URL");
+            String clientId = bundle.getString("com.saasandroid.CLIENT_ID");
+            String redirectUrl = bundle.getString("com.saasandroid.REDIRECT_URL");
 
 
             ClientCredentials CLIENT_CREDENTIALS = new ClientCredentials(clientId, CLIENT_SECRET, redirectUrl);
@@ -79,9 +78,6 @@ public class FitbitAuthentication extends Application {
         }
     }
 
-    /**
-     * 1. When the application starts, load our keys and configure the AuthenticationManager
-     */
     @Override
     public void onCreate() {
         super.onCreate();

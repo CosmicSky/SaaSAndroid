@@ -1,4 +1,4 @@
-<manifest package="com.fitbit.fitbitauth"
+<manifest package="com.saasandroid.authentication"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         >
         <activity
-            android:name="com.fitbit.authentication.ui.LoginActivity"
+            android:name="com.saasandroid.authentication.activities.FitbitLoginActivity"
             android:theme="@style/Theme.Fitbit.Teal">
         </activity>
 

@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="100"
-    android:gravity="center">
-
-    <TextView
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:gravity="center"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:text="SaaS Mobile"
-        android:id="@+id/welcomeLoginText" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100"
+        android:gravity="center">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:singleLine="true"
-        android:text="email"
-        android:textStyle="bold"
-        android:id="@+id/emailLoginText" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:gravity="center"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:text="SaaS Mobile"
+            android:id="@+id/welcomeLoginText" />
 
-    <EditText
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:gravity="center"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:singleLine="true"
-        android:id="@+id/passwordLoginText" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:singleLine="true"
+            android:text="email"
+            android:textStyle="bold"
+            android:id="@+id/emailLoginText" />
 
-    <Button
-        android:id="@+id/loginAtLoginButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="75dp"
-        android:layout_marginRight="75dp"
-        android:text="Login" />
+        <EditText
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:singleLine="true"
+            android:id="@+id/passwordLoginText" />
 
-    <Button
-        android:text="Forgot Password"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="75dp"
-        android:layout_marginRight="75dp"
-        android:id="@+id/forgotPasswordButton" />
-</LinearLayout>
+        <Button
+            android:id="@+id/loginAtLoginButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginRight="75dp"
+            android:text="Login" />
+
+        <Button
+            android:text="Forgot Password"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginRight="75dp"
+            android:id="@+id/forgotPasswordButton" />
+    </LinearLayout>
+</layout>
