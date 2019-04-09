@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         >
         <activity
-            android:name=".activities.FitbitLoginActivity"
+            android:name="com.saasandroid.authentication.activities.FitbitLoginActivity"
             android:theme="@style/Theme.Fitbit.Teal">
         </activity>
 

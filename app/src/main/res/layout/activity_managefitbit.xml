@@ -87,7 +87,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/background_gradient"
             android:gravity="center"
-            android:visibility="@{safeUnbox(loading) ? View.VISIBLE : View.GONE}">
+            android:visibility="@{loading ? View.VISIBLE : View.GONE}">
 
             <ProgressBar
                 android:id="@+id/progressBar"

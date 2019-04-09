@@ -21,10 +21,6 @@
             "package_name": "com.companyname.SaaSAndroid",
             "certificate_hash": "9ab85511413e3b7c100a35eea7c52ecaeda12010"
           }
-        },
-        {
-          "client_id": "981585540799-gfco6bgvsogo28h5ep0tivo32t2q2mhd.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
@@ -33,11 +29,7 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "981585540799-gfco6bgvsogo28h5ep0tivo32t2q2mhd.apps.googleusercontent.com",
@@ -51,9 +43,6 @@
               }
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

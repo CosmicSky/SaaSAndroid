@@ -31,6 +31,8 @@ import com.saasandroid.activities.databinding.ActivityManagefitbitBinding;
 
 import java.util.Set;
 
+import static com.saasandroid.models.FitbitAuthentication.generateAuthenticationConfiguration;
+
 public class ManageFitbitActivity extends Activity implements AuthenticationHandler {
 
     private ActivityManagefitbitBinding binding;
@@ -38,6 +40,7 @@ public class ManageFitbitActivity extends Activity implements AuthenticationHand
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AuthenticationManager.configure(this, generateAuthenticationConfiguration(this, ManageFitbitActivity.class));
         binding = DataBindingUtil.setContentView(this, R.layout.activity_managefitbit);
 
         Button mLogin = findViewById(R.id.fitbitLoginButton);
@@ -89,6 +92,14 @@ public class ManageFitbitActivity extends Activity implements AuthenticationHand
     private void onLoggedIn() {
         startActivity(new Intent(getApplicationContext(), FitbitDevicesActivity.class));
         binding.setLoading(false);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (!AuthenticationManager.onActivityResult(requestCode, resultCode, data, this)) {
+            // Handle other activity results, if needed
+        }
     }
 
     @Override
