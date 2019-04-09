@@ -1,4 +1,4 @@
-package com.saasandroid.authentication.activities;
+package com.saasandroid.activities;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

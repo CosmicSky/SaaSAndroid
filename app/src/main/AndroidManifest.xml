@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.saasandroid.authentication.activities">
+    package="com.saasandroid.activities">
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -20,7 +20,7 @@
             android:value="SaaSAndroid://oauth-callback"/>
 
         <activity
-            android:name="com.saasandroid.authentication.activities.WelcomeActivity"
+            android:name="com.saasandroid.activities.WelcomeActivity"
             android:label="Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,59 +29,59 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.LoginActivity"
+            android:name="com.saasandroid.activities.LoginActivity"
             android:label="Login" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.RegisterActivity"
+            android:name="com.saasandroid.activities.RegisterActivity"
             android:label="Register" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.StudiesActivity"
+            android:name="com.saasandroid.activities.StudiesActivity"
             android:label="Studies" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.StudyInformationActivity"
+            android:name="com.saasandroid.activities.StudyInformationActivity"
             android:label="StudyInformation" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.StudyRepositoryActivity"
+            android:name="com.saasandroid.activities.StudyRepositoryActivity"
             android:label="StudyRepository" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.StudyRepositoryInformationActivity"
+            android:name="com.saasandroid.activities.StudyRepositoryInformationActivity"
             android:label="StudyRepositoryInformation" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.DataActivity"
+            android:name="com.saasandroid.activities.DataActivity"
             android:label="Data" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.ProfileActivity"
+            android:name="com.saasandroid.activities.ProfileActivity"
             android:label="Profile" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.SettingsActivity"
+            android:name="com.saasandroid.activities.SettingsActivity"
             android:label="Settings" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.ManageDevicesActivity"
+            android:name="com.saasandroid.activities.ManageDevicesActivity"
             android:label="ManageDevices" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.AccountVerificationActivity"
+            android:name="com.saasandroid.activities.AccountVerificationActivity"
             android:label="AccountVerification" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.PasswordResetActivity"
+            android:name="com.saasandroid.activities.PasswordResetActivity"
             android:label="PasswordReset" >
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.ManageFitbitActivity"
+            android:name="com.saasandroid.activities.ManageFitbitActivity"
             android:label="ManageFitbit">
         </activity>
         <activity
-            android:name="com.saasandroid.authentication.activities.FitbitDevicesActivity"
+            android:name="com.saasandroid.activities.FitbitDevicesActivity"
             android:label="FitbitDevices" >
         </activity>
     </application>

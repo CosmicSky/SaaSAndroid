@@ -6,7 +6,7 @@
 //  Copyright © 2019 Tony Qi. All rights reserved.
 //
 
-package com.saasandroid.authentication.activities;
+package com.saasandroid.activities;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -27,7 +27,7 @@ import com.saasandroid.authentication.AuthenticationManager;
 import com.saasandroid.authentication.AuthenticationResult;
 import com.saasandroid.authentication.Scope;
 import com.saasandroid.utilities.BottomNavigationViewHelper;
-import com.saasandroid.authentication.activities.databinding.ActivityManagefitbitBinding;
+import com.saasandroid.activities.databinding.ActivityManagefitbitBinding;
 
 import java.util.Set;
 

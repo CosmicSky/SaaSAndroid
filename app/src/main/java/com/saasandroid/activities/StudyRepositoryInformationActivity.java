@@ -6,7 +6,7 @@
 //  Copyright © 2019 Tony Qi. All rights reserved.
 //
 
-package com.saasandroid.authentication.activities;
+package com.saasandroid.activities;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.saasandroid.authentication.activities;
+package com.saasandroid.activities;
 
 import org.junit.Test;
 
