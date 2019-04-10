@@ -11,40 +11,54 @@ package com.saasandroid.activities;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.saasandroid.activities.databinding.ActivitySettingsBinding;
+import com.saasandroid.authentication.AuthenticationHandler;
+import com.saasandroid.authentication.AuthenticationManager;
+import com.saasandroid.authentication.AuthenticationResult;
+import com.saasandroid.authentication.Scope;
 import com.saasandroid.utilities.BottomNavigationViewHelper;
 
-public class SettingsActivity extends Activity {
+import java.util.Set;
+
+import static com.saasandroid.models.FitbitAuthentication.generateAuthenticationConfiguration;
+
+public class SettingsActivity extends Activity implements AuthenticationHandler {
+
+    private ActivitySettingsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        AuthenticationManager.configure(this, generateAuthenticationConfiguration(this, SettingsActivity.class));
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_settings);
 
-        String status = getIntent().getStringExtra("status");
-        if (status != null && status.equals("success")) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Fitbit Login Successful")
-                    .setMessage("You have successfully connected and synchronized your Fitbit device.")
-                    .create()
-                    .show();
-        }
-
-        Button mManageFitbit = findViewById(R.id.manageFitbitButton);
+        Button mConnectFitbit = findViewById(R.id.connectFitbitButton);
+        Button mDisconnectFitbit = findViewById(R.id.disconnectFitbitButton);
         Button mLogout = findViewById(R.id.logoutButton);
 
-        mManageFitbit.setOnClickListener(new View.OnClickListener() {
+        mConnectFitbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ManageFitbitActivity.class));
+                binding.setLoading(true);
+                AuthenticationManager.login(SettingsActivity.this);
+            }
+        });
+
+        mDisconnectFitbit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AuthenticationManager.logout(SettingsActivity.this);
             }
         });
 
@@ -79,5 +93,61 @@ public class SettingsActivity extends Activity {
                 return false;
             }
         });
+    }
+
+    private void onLoggedIn() {
+        new AlertDialog.Builder(this)
+                .setTitle("Fitbit Login Successful")
+                .setMessage("You have successfully connected and synchronized your Fitbit device.")
+                .create()
+                .show();
+        binding.setLoading(false);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (!AuthenticationManager.onActivityResult(requestCode, resultCode, data, this)) {
+            // Handle other activity results, if needed
+        }
+    }
+
+    @Override
+    public void onAuthFinished(AuthenticationResult authenticationResult) {
+        binding.setLoading(false);
+        if (authenticationResult.isSuccessful()) {
+            onLoggedIn();
+        } else {
+            displayAuthError(authenticationResult);
+        }
+    }
+
+    private void displayAuthError(AuthenticationResult authenticationResult) {
+        String message = "";
+
+        switch (authenticationResult.getStatus()) {
+            case dismissed:
+                message = "Login dismissed or no scopes selected";
+                break;
+            case error:
+                message = authenticationResult.getErrorMessage();
+                break;
+            case missing_required_scopes:
+                Set<Scope> missingScopes = authenticationResult.getMissingScopes();
+                String missingScopesText = TextUtils.join(", ", missingScopes);
+                message = "Error logging in. Missing the following required scopes: " + missingScopesText;
+                break;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("Login")
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                })
+                .create()
+                .show();
     }
 }

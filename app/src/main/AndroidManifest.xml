@@ -71,10 +71,6 @@
             android:name="com.saasandroid.activities.PasswordResetActivity"
             android:label="PasswordReset" >
         </activity>
-        <activity
-            android:name="com.saasandroid.activities.ManageFitbitActivity"
-            android:label="ManageFitbit">
-        </activity>
     </application>
 
 </manifest>

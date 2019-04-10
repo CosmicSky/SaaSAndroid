@@ -10,10 +10,8 @@ import android.os.Bundle;
 
 import com.saasandroid.authentication.AuthenticationConfiguration;
 import com.saasandroid.authentication.AuthenticationConfigurationBuilder;
-import com.saasandroid.authentication.AuthenticationManager;
 import com.saasandroid.authentication.ClientCredentials;
 import com.saasandroid.authentication.Scope;
-import com.saasandroid.activities.ManageFitbitActivity;
 
 import static com.saasandroid.authentication.Scope.activity;
 

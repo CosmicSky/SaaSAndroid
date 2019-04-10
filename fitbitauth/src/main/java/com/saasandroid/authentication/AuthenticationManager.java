@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+
 import com.sveinungkb.SecurePreferences;
 
 import java.util.HashSet;
@@ -99,11 +101,11 @@ public class AuthenticationManager {
         return currentAccessToken != null && !currentAccessToken.hasExpired();
     }
 
-    public static void logout(final Activity contextActivity) {
-        logout(contextActivity, null);
+    public static void logout(final Context context) {
+        logout(context, null);
     }
 
-    public static void logout(final Activity contextActivity, @Nullable final LogoutTaskCompletionHandler logoutTaskCompletionHandler) {
+    public static void logout(final Context context, @Nullable final LogoutTaskCompletionHandler logoutTaskCompletionHandler) {
         checkPreconditions();
         if (!isLoggedIn()) {
             return;
@@ -114,10 +116,11 @@ public class AuthenticationManager {
                 new LogoutTaskCompletionHandler() {
                     @Override
                     public void logoutSuccess() {
-                        Intent beforeLoginActivity = authenticationConfiguration.getBeforeLoginActivity();
-                        if (beforeLoginActivity != null) {
-                            contextActivity.startActivity(beforeLoginActivity);
-                        }
+                        new AlertDialog.Builder(context)
+                                .setTitle("Fitbit Logout Successful")
+                                .setMessage("You have successfully logged out of your Fitbit device.")
+                                .create()
+                                .show();
                         if (logoutTaskCompletionHandler != null) {
                             logoutTaskCompletionHandler.logoutSuccess();
                         }
@@ -125,10 +128,11 @@ public class AuthenticationManager {
 
                     @Override
                     public void logoutError(String message) {
-                        Intent beforeLoginActivity = authenticationConfiguration.getBeforeLoginActivity();
-                        if (beforeLoginActivity != null) {
-                            contextActivity.startActivity(beforeLoginActivity);
-                        }
+                        new AlertDialog.Builder(context)
+                                .setTitle("Fitbit Logout Unsuccessful")
+                                .setMessage("An error has occurred.")
+                                .create()
+                                .show();
                         if (logoutTaskCompletionHandler != null) {
                             logoutTaskCompletionHandler.logoutError(message);
                         }
