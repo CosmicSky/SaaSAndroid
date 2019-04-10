@@ -10,15 +10,15 @@ package com.saasandroid.activities;
 
 import com.saasandroid.models.CurrentState;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends Activity {
     private EditText mEmail;
 
     @Override
@@ -40,6 +40,11 @@ public class WelcomeActivity extends AppCompatActivity {
                     AlertDialog.Builder alert = new AlertDialog.Builder(WelcomeActivity.this);
                     alert.setTitle("Email is Empty");
                     alert.setMessage("Email is empty. Please try again.");
+                    alert.show();
+                } else if (!RegisterActivity.MatchEmailFormat(mEmail.getText().toString())) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(WelcomeActivity.this);
+                    alert.setTitle("Invalid Email Format");
+                    alert.setMessage("The email you have entered is not in the correct format. Please try again.");
                     alert.show();
                 } else {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

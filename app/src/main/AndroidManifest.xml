@@ -64,10 +64,6 @@
             android:label="Settings" >
         </activity>
         <activity
-            android:name="com.saasandroid.activities.ManageDevicesActivity"
-            android:label="ManageDevices" >
-        </activity>
-        <activity
             android:name="com.saasandroid.activities.AccountVerificationActivity"
             android:label="AccountVerification" >
         </activity>
@@ -78,10 +74,6 @@
         <activity
             android:name="com.saasandroid.activities.ManageFitbitActivity"
             android:label="ManageFitbit">
-        </activity>
-        <activity
-            android:name="com.saasandroid.activities.FitbitDevicesActivity"
-            android:label="FitbitDevices" >
         </activity>
     </application>
 

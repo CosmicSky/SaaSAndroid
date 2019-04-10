@@ -80,17 +80,9 @@ public class ManageFitbitActivity extends Activity implements AuthenticationHand
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        binding.setLoading(false);
-        if (AuthenticationManager.isLoggedIn()) {
-            onLoggedIn();
-        }
-    }
-
     private void onLoggedIn() {
-        startActivity(new Intent(getApplicationContext(), FitbitDevicesActivity.class));
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class).putExtra("status", "success");
+        startActivity(intent);
         binding.setLoading(false);
     }
 

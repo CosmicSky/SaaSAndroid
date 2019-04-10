@@ -9,10 +9,12 @@
 package com.saasandroid.activities;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,13 +29,22 @@ public class SettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Button mManageDevices = findViewById(R.id.manageDevicesButton);
+        String status = getIntent().getStringExtra("status");
+        if (status != null && status.equals("success")) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Fitbit Login Successful")
+                    .setMessage("You have successfully connected and synchronized your Fitbit device.")
+                    .create()
+                    .show();
+        }
+
+        Button mManageFitbit = findViewById(R.id.manageFitbitButton);
         Button mLogout = findViewById(R.id.logoutButton);
 
-        mManageDevices.setOnClickListener(new View.OnClickListener() {
+        mManageFitbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ManageDevicesActivity.class));
+                startActivity(new Intent(getApplicationContext(), ManageFitbitActivity.class));
             }
         });
 

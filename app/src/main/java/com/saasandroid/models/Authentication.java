@@ -8,10 +8,12 @@
 
 package com.saasandroid.models;
 
-public interface Authentication {
-    void signIn(String email, String password);
+import android.content.Context;
 
-    void register(String email, String password);
+public interface Authentication {
+    void signIn(Context mContext, String email, String password);
+
+    void register(Context mContext, StudyParticipant newUser, String email, String password);
 
     void signOut();
 

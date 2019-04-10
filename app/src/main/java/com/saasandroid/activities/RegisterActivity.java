@@ -11,15 +11,17 @@ package com.saasandroid.activities;
 import com.saasandroid.models.CurrentState;
 import com.saasandroid.models.StudyParticipant;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class RegisterActivity extends AppCompatActivity{
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class RegisterActivity extends Activity {
     private EditText mFirstName;
     private EditText mLastName;
     private EditText mDateOfBirth;
@@ -54,10 +56,10 @@ public class RegisterActivity extends AppCompatActivity{
                     alert.setMessage("You are missing some fields. Please enter all of the" +
                             " information and try again.");
                     alert.show();
-                } else if (!EmailContainsAtSign()) {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(getApplicationContext());
-                    alert.setTitle("Email Does Not Contain @");
-                    alert.setMessage("The email you have entered does not contain an @ sign. Please try again.");
+                } else if (!MatchEmailFormat(mEmail.getText().toString())) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(RegisterActivity.this);
+                    alert.setTitle("Invalid Email Format");
+                    alert.setMessage("The email you have entered is not in the correct format. Please try again.");
                     alert.show();
                 } else if (DateOfBirthIncorrectFormat()) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(RegisterActivity.this);
@@ -84,26 +86,8 @@ public class RegisterActivity extends AppCompatActivity{
                     StudyParticipant newUser = new StudyParticipant(firstName, lastName,
                             mDateOfBirth.getText().toString(), mZipCode.getText().toString(),
                             mCountry.getText().toString(), mEmail.getText().toString());
-                    CurrentState.getAuthentication().register(mEmail.getText().toString(), mPassword.getText().toString());
-                    try {
-                        Thread.sleep(1500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    if (CurrentState.getAuthentication().isSignedIn()) {
-                        CurrentState.getAuthentication().sendVerificationLink();
-                        String userId = CurrentState.getAuthentication().getUserId();
-                        CurrentState.getDatabase().addStudyParticipant(newUser, userId);
-                        CurrentState.setStudyParticipant(newUser);
-
-                        startActivity(new Intent(getApplicationContext(), AccountVerificationActivity.class));
-                    } else {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(RegisterActivity.this);
-                        alert.setTitle("Email Is Registered");
-                        alert.setMessage("The email you have entered is already registered." +
-                                " Please check to see if you have already created an account.");
-                        alert.show();
-                    }
+                    CurrentState.getAuthentication().register(RegisterActivity.this, newUser,
+                            mEmail.getText().toString(), mPassword.getText().toString());
                 }
             }
         });
@@ -117,8 +101,12 @@ public class RegisterActivity extends AppCompatActivity{
                 mPassword.getText().toString().isEmpty() || mReEnterPassword.getText().toString().isEmpty();
     }
 
-    private boolean EmailContainsAtSign() {
-        return mEmail.getText().toString().contains("@");
+    public static boolean MatchEmailFormat(String email) {
+        String regex = "^[\\w-+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
     private boolean DateOfBirthIncorrectFormat() {

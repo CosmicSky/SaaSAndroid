@@ -8,10 +8,10 @@
 
 package com.saasandroid.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.saasandroid.models.CurrentState;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
     private TextView mEmail;
     private EditText mPassword;
 
@@ -43,32 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                     alert.setMessage("Password is empty. Please try again.");
                     alert.show();
                 } else {
-                    CurrentState.getAuthentication().signIn(mEmail.getText().toString(), mPassword.getText().toString());
-                    try {
-                        Thread.sleep(1500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    if (CurrentState.getAuthentication().isSignedIn()) {
-                        CurrentState.getDatabase().retrieveStudyParticipant(CurrentState.getAuthentication().getUserId());
-                        if (CurrentState.getAuthentication().isVerified()) {
-                            CurrentState.getDatabase().retrieveIndividualStudyList();
-                            CurrentState.getDatabase().retrieveGlobalStudyList();
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            startActivity(new Intent(getApplicationContext(), StudiesActivity.class));
-                        } else {
-                            startActivity(new Intent(getApplicationContext(), AccountVerificationActivity.class));
-                        }
-                    } else {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-                        alert.setTitle("Incorrect Credentials");
-                        alert.setMessage("Incorrect Credentials Entered. Please try again.");
-                        alert.show();
-                    }
+                    CurrentState.getAuthentication().signIn(LoginActivity.this, mEmail.getText().toString(), mPassword.getText().toString());
                 }
             }
         });

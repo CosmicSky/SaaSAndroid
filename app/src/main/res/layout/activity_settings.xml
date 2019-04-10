@@ -18,14 +18,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
-                android:id="@+id/manageDevicesButton"
+                android:id="@+id/manageFitbitButton"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginLeft="75dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="75dp"
                 android:layout_weight="12"
-                android:text="Manage Devices" />
+                android:text="Manage Fitbit" />
 
             <Button
                 android:id="@+id/logoutButton"

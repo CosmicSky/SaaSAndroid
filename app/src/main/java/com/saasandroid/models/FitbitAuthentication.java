@@ -65,7 +65,7 @@ public class FitbitAuthentication extends Application {
 
                     .setClientCredentials(CLIENT_CREDENTIALS)
                     .setEncryptionKey(SECURE_KEY)
-                    .setTokenExpiresIn(2592000L) // 30 days
+                    .setTokenExpiresIn(86400L) // 24 hours
                     .setBeforeLoginActivity(new Intent(context, mainActivityClass))
                     .addRequiredScopes(Scope.profile, Scope.settings)
                     .addOptionalScopes(activity, Scope.weight)
