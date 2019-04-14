@@ -5,18 +5,36 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ListView
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:textAlignment="center"
-            android:minWidth="25dp"
-            android:minHeight="25dp"
-            android:id="@+id/studyRepositoryList"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="100"
             app:layout_constraintBottom_toTopOf="@+id/navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:text="Available Studies"
+                android:id="@+id/studiesRepoText" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="90"
+                android:textAlignment="center"
+                android:minWidth="25dp"
+                android:minHeight="25dp"
+                android:id="@+id/studyRepositoryList" />
+        </LinearLayout>
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigation"

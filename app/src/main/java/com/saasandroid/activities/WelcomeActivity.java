@@ -41,7 +41,7 @@ public class WelcomeActivity extends Activity {
                     alert.setTitle("Email is Empty");
                     alert.setMessage("Email is empty. Please try again.");
                     alert.show();
-                } else if (!RegisterActivity.MatchEmailFormat(mEmail.getText().toString())) {
+                } else if (RegisterActivity.DoesNotMatchEmailFormat(mEmail.getText().toString())) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(WelcomeActivity.this);
                     alert.setTitle("Invalid Email Format");
                     alert.setMessage("The email you have entered is not in the correct format. Please try again.");

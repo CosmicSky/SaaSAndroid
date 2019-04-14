@@ -14,12 +14,17 @@ import com.saasandroid.models.StudyParticipant;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static android.content.ContentValues.TAG;
 
 public class RegisterActivity extends Activity {
     private EditText mFirstName;
@@ -56,7 +61,7 @@ public class RegisterActivity extends Activity {
                     alert.setMessage("You are missing some fields. Please enter all of the" +
                             " information and try again.");
                     alert.show();
-                } else if (!MatchEmailFormat(mEmail.getText().toString())) {
+                } else if (DoesNotMatchEmailFormat(mEmail.getText().toString())) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(RegisterActivity.this);
                     alert.setTitle("Invalid Email Format");
                     alert.setMessage("The email you have entered is not in the correct format. Please try again.");
@@ -66,6 +71,11 @@ public class RegisterActivity extends Activity {
                     alert.setTitle("Date Of Birth Incorrect Format");
                     alert.setMessage("The date of birth that you have entered is not in the" +
                             " correct format. Please use mm/dd/yyyy.");
+                    alert.show();
+                } else if (AgeCheck(19)) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(RegisterActivity.this);
+                    alert.setTitle("Age Requirement Failed");
+                    alert.setMessage("You must be 19 or older to participate in study programs.");
                     alert.show();
                 } else if (!PasswordsMatch()) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(RegisterActivity.this);
@@ -101,12 +111,12 @@ public class RegisterActivity extends Activity {
                 mPassword.getText().toString().isEmpty() || mReEnterPassword.getText().toString().isEmpty();
     }
 
-    public static boolean MatchEmailFormat(String email) {
+    public static boolean DoesNotMatchEmailFormat(String email) {
         String regex = "^[\\w-+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 
         Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
+        return !matcher.matches();
     }
 
     private boolean DateOfBirthIncorrectFormat() {
@@ -119,6 +129,36 @@ public class RegisterActivity extends Activity {
             return monthDateYear.length != 3 || monthDateYear[0].length() != 2
                     || monthDateYear[1].length() != 2 || monthDateYear[2].length() != 4;
         }
+    }
+
+    private boolean AgeCheck(int ageRequirement) {
+        String[] monthDateYear = mDateOfBirth.getText().toString().split("/");
+
+        Calendar today = Calendar.getInstance();
+        today.setTimeInMillis(System.currentTimeMillis());
+
+        //create calendar object for birth day
+        Calendar dob = Calendar.getInstance();
+        dob.setTime(new Date(Integer.parseInt(monthDateYear[2]) - 1900, Integer.parseInt(monthDateYear[0]), Integer.parseInt(monthDateYear[1])));
+
+        int curYear = today.get(Calendar.YEAR);
+        int dobYear = dob.get(Calendar.YEAR);
+
+        int age = curYear - dobYear;
+
+        int curMonth = today.get(Calendar.MONTH);
+        int dobMonth = dob.get(Calendar.MONTH);
+        if (dobMonth > curMonth) {
+            age--;
+        } else if (dobMonth == curMonth) {
+            int curDay = today.get(Calendar.DAY_OF_MONTH);
+            int dobDay = dob.get(Calendar.DAY_OF_MONTH);
+            if (dobDay > curDay) {
+                age--;
+            }
+        }
+
+        return age <= ageRequirement;
     }
 
     private boolean PasswordsMatch()
