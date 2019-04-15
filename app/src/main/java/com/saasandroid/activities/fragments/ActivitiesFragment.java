@@ -22,7 +22,7 @@ public class ActivitiesFragment extends InfoFragment<DailyActivitySummary> {
 
     @Override
     public int getTitleResourceId() {
-        return R.string.activity_info;
+        return R.string.activity;
     }
 
     @Override

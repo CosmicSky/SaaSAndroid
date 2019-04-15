@@ -7,8 +7,11 @@
     <string name="error_loading_data">Error loading data. Check that you are logged in to fitbit under
         settings.</string>
     <string name="no_data">No data</string>
-    <string name="user_info">User</string>
-    <string name="activity_info">Activity</string>
+    <string name="user">User</string>
+    <string name="activity">Activity</string>
+    <string name="heartrate">HeartRate</string>
+    <string name="sleep">Sleep</string>
+    <string name="nutrition">Nutrition</string>
     <string name="weight">Weight</string>
     <string name="devices">Devices</string>
 </resources>

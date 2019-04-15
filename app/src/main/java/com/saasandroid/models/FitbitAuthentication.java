@@ -9,7 +9,6 @@
 package com.saasandroid.models;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -20,8 +19,6 @@ import com.saasandroid.authentication.AuthenticationConfiguration;
 import com.saasandroid.authentication.AuthenticationConfigurationBuilder;
 import com.saasandroid.authentication.ClientCredentials;
 import com.saasandroid.authentication.Scope;
-
-import static com.saasandroid.authentication.Scope.activity;
 
 public class FitbitAuthentication {
 
@@ -69,8 +66,7 @@ public class FitbitAuthentication {
                     .setEncryptionKey(SECURE_KEY)
                     .setTokenExpiresIn(86400L) // 24 hours
                     .setBeforeLoginActivity(new Intent(context, mainActivityClass))
-                    .addRequiredScopes(Scope.profile, Scope.settings)
-                    .addOptionalScopes(activity, Scope.weight)
+                    .addRequiredScopes(Scope.activity, Scope.weight, Scope.heartrate, Scope.nutrition, Scope.sleep)
                     .setLogoutOnAuthFailure(true)
 
                     .build();

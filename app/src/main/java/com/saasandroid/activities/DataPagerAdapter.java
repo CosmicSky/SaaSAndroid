@@ -12,12 +12,14 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentPagerAdapter;
 
+import com.saasandroid.activities.fragments.NutritionFragment;
+import com.saasandroid.activities.fragments.SleepFragment;
 import com.saasandroid.authentication.AuthenticationManager;
 import com.saasandroid.authentication.Scope;
 import com.saasandroid.activities.fragments.ActivitiesFragment;
 import com.saasandroid.activities.fragments.InfoFragment;
-import com.saasandroid.activities.fragments.ProfileFragment;
 import com.saasandroid.activities.fragments.WeightLogFragment;
+import com.saasandroid.activities.fragments.HeartRateFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +32,17 @@ public class DataPagerAdapter extends FragmentPagerAdapter {
         super(fm);
 
         fragments.clear();
-        if (containsScope(Scope.profile)) {
-            fragments.add(new ProfileFragment());
-        }
         if (containsScope(Scope.activity)) {
             fragments.add(new ActivitiesFragment());
+        }
+        if (containsScope(Scope.heartrate)) {
+            fragments.add(new HeartRateFragment());
+        }
+        if (containsScope(Scope.sleep)) {
+            fragments.add(new SleepFragment());
+        }
+        if (containsScope(Scope.nutrition)) {
+            fragments.add(new NutritionFragment());
         }
         if (containsScope(Scope.weight)) {
             fragments.add(new WeightLogFragment());

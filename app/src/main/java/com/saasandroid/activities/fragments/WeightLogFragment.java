@@ -27,7 +27,7 @@ public class WeightLogFragment extends InfoFragment<WeightLogs> {
 
     @Override
     protected int getLoaderId() {
-        return 3;
+        return 5;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class WeightLogFragment extends InfoFragment<WeightLogs> {
         List<Weight> weights = weightLogs.getWeight();
 
         if (weights.isEmpty()) {
-            stringBuilder.append("Missing Weight Data");
+            stringBuilder.append("Missing Today's Weight Data");
         } else {
             for (Weight weight : weights) {
                 printKeys(stringBuilder, weight);
