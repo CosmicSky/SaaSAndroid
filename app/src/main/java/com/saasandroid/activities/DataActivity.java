@@ -8,25 +8,49 @@
 
 package com.saasandroid.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
+import com.saasandroid.activities.databinding.ActivityDataBinding;
+import com.saasandroid.authentication.AuthenticationManager;
 import com.saasandroid.utilities.BottomNavigationViewHelper;
 
+import static com.saasandroid.models.FitbitAuthentication.generateAuthenticationConfiguration;
+
 public class DataActivity extends Activity {
+    private ActivityDataBinding binding;
+    private DataPagerAdapter dataPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data);
+        AuthenticationManager.configure(this, generateAuthenticationConfiguration(this, DataActivity.class));
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_data);
+        binding.setLoading(false);
 
-        TextView mTextMessage = findViewById(R.id.dataMessage);
+        dataPagerAdapter = new DataPagerAdapter(getFragmentManager());
+        binding.viewPager.setAdapter(dataPagerAdapter);
+
+        binding.viewPager.addOnPageChangeListener(
+                new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        // When swiping between pages, select the
+                        // corresponding tab.
+                        getActionBar().setSelectedNavigationItem(position);
+                    }
+                });
+
+        addTabs();
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);
@@ -52,5 +76,35 @@ public class DataActivity extends Activity {
                 return false;
             }
         });
+    }
+
+    private void addTabs() {
+        final ActionBar actionBar = getActionBar();
+        // Specify that tabs should be displayed in the action bar.
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        int numberOfTabs = dataPagerAdapter.getCount();
+        for (int i = 0; i < numberOfTabs; i++) {
+            final int index = i;
+            actionBar.addTab(
+                    actionBar.newTab()
+                            .setText(getString(dataPagerAdapter.getTitleResourceId(i)))
+                            .setTabListener(new ActionBar.TabListener() {
+                                @Override
+                                public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+                                    binding.viewPager.setCurrentItem(index);
+                                }
+
+                                @Override
+                                public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+                                }
+
+                                @Override
+                                public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+                                }
+                            }));
+        }
     }
 }

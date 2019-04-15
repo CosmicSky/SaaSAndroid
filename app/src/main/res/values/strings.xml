@@ -7,4 +7,9 @@
     <string name="error_loading_data">Error loading data. Check your internet connection and try
         again later.
     </string>
+    <string name="no_data">No data</string>
+    <string name="user_info">User</string>
+    <string name="activity_info">Activity</string>
+    <string name="weight">Weight</string>
+    <string name="devices">Devices</string>
 </resources>
