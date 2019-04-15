@@ -1,5 +1,12 @@
-package com.saasandroid.activities;
+//
+//  DataPagerAdapter.java
+//  SaaSAndroid
+//
+//  Created by Tony Qi on 4/15/19.
+//  Copyright © 2019 Tony Qi. All rights reserved.
+//
 
+package com.saasandroid.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -15,10 +22,6 @@ import com.saasandroid.activities.fragments.WeightLogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by jboggess on 10/17/16.
- */
 
 public class DataPagerAdapter extends FragmentPagerAdapter {
 

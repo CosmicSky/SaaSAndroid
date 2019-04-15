@@ -1,5 +1,12 @@
-package com.saasandroid.activities.fragments;
+//
+//  ProfileFragment.java
+//  SaaSAndroid
+//
+//  Created by Tony Qi on 4/15/19.
+//  Copyright © 2019 Tony Qi. All rights reserved.
+//
 
+package com.saasandroid.activities.fragments;
 
 import android.content.Loader;
 import android.os.Bundle;
@@ -9,10 +16,6 @@ import com.saasandroid.api.models.User;
 import com.saasandroid.api.models.UserContainer;
 import com.saasandroid.api.services.UserService;
 import com.saasandroid.activities.R;
-
-/**
- * Created by jboggess on 10/17/16.
- */
 
 public class ProfileFragment extends InfoFragment<UserContainer> {
 

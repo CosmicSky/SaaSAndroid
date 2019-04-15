@@ -21,7 +21,7 @@ import java.util.Locale;
  */
 public class WeightService {
 
-    private final static String WEIGHT_URL = "https://api.fitbit.com/1/user/-/body/log/weight/date/%s/%s.json";
+    private final static String WEIGHT_URL = "https://api.fitbit.com/1/user/-/body/log/weight/date/today.json";
     private static final ResourceLoaderFactory<WeightLogs> WEIGHT_LOG_LOADER_FACTORY = new ResourceLoaderFactory<>(WEIGHT_URL, WeightLogs.class);
     private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 

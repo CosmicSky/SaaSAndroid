@@ -1,3 +1,11 @@
+//
+//  FitbitAuthentication.java
+//  SaaSAndroid
+//
+//  Created by Tony Qi on 4/15/19.
+//  Copyright © 2019 Tony Qi. All rights reserved.
+//
+
 package com.saasandroid.models;
 
 import android.app.Activity;
@@ -15,11 +23,7 @@ import com.saasandroid.authentication.Scope;
 
 import static com.saasandroid.authentication.Scope.activity;
 
-/**
- * Created by jboggess on 9/28/16.
- */
-
-public class FitbitAuthentication extends Application {
+public class FitbitAuthentication {
 
     /**
      * These client credentials come from creating an app on https://dev.fitbit.com.

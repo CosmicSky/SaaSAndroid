@@ -20,7 +20,7 @@ import java.util.Locale;
  */
 public class ActivityService {
 
-    private final static String ACTIVITIES_URL = "https://api.fitbit.com/1/user/-/activities/date/%s.json";
+    private final static String ACTIVITIES_URL = "https://api.fitbit.com/1/user/-/activities/date/today.json";
     private static final ResourceLoaderFactory<DailyActivitySummary> USER_ACTIVITIES_LOADER_FACTORY = new ResourceLoaderFactory<>(ACTIVITIES_URL, DailyActivitySummary.class);
     private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 

@@ -1,5 +1,12 @@
-package com.saasandroid.activities.fragments;
+//
+//  ActivitiesFragment.java
+//  SaaSAndroid
+//
+//  Created by Tony Qi on 4/15/19.
+//  Copyright © 2019 Tony Qi. All rights reserved.
+//
 
+package com.saasandroid.activities.fragments;
 
 import android.content.Loader;
 import android.os.Bundle;
@@ -12,10 +19,6 @@ import com.saasandroid.api.services.ActivityService;
 import com.saasandroid.activities.R;
 
 import java.util.Date;
-
-/**
- * Created by jboggess on 10/17/16.
- */
 
 public class ActivitiesFragment extends InfoFragment<DailyActivitySummary> {
 
@@ -48,7 +51,7 @@ public class ActivitiesFragment extends InfoFragment<DailyActivitySummary> {
         Summary summary = dailyActivitySummary.getSummary();
         Goals goals = dailyActivitySummary.getGoals();
 
-        stringBuilder.append("<b>TODAY</b> ");
+        stringBuilder.append("<b>SUMMARY</b> ");
         stringBuilder.append("<br />");
         printKeys(stringBuilder, summary);
 

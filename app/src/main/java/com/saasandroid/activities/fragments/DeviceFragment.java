@@ -1,5 +1,12 @@
-package com.saasandroid.activities.fragments;
+//
+//  DeviceFragment.java
+//  SaaSAndroid
+//
+//  Created by Tony Qi on 4/15/19.
+//  Copyright © 2019 Tony Qi. All rights reserved.
+//
 
+package com.saasandroid.activities.fragments;
 
 import android.content.Loader;
 import android.os.Bundle;
@@ -8,10 +15,6 @@ import com.saasandroid.api.loaders.ResourceLoaderResult;
 import com.saasandroid.api.models.Device;
 import com.saasandroid.api.services.DeviceService;
 import com.saasandroid.activities.R;
-
-/**
- * Created by jboggess on 10/17/16.
- */
 
 public class DeviceFragment extends InfoFragment<Device[]> {
     @Override
