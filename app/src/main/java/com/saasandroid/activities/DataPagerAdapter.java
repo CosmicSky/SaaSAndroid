@@ -15,7 +15,6 @@ import android.support.v13.app.FragmentPagerAdapter;
 import com.saasandroid.authentication.AuthenticationManager;
 import com.saasandroid.authentication.Scope;
 import com.saasandroid.activities.fragments.ActivitiesFragment;
-import com.saasandroid.activities.fragments.DeviceFragment;
 import com.saasandroid.activities.fragments.InfoFragment;
 import com.saasandroid.activities.fragments.ProfileFragment;
 import com.saasandroid.activities.fragments.WeightLogFragment;
@@ -33,9 +32,6 @@ public class DataPagerAdapter extends FragmentPagerAdapter {
         fragments.clear();
         if (containsScope(Scope.profile)) {
             fragments.add(new ProfileFragment());
-        }
-        if (containsScope(Scope.settings)) {
-            fragments.add(new DeviceFragment());
         }
         if (containsScope(Scope.activity)) {
             fragments.add(new ActivitiesFragment());

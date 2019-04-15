@@ -1,38 +1,24 @@
-package com.saasandroid.activities.fragments;
+//
+//  WeightLogFragment.java
+//  SaaSAndroid
+//
+//  Created by Tony Qi on 4/15/19.
+//  Copyright © 2019 Tony Qi. All rights reserved.
+//
 
+package com.saasandroid.activities.fragments;
 
 import android.content.Loader;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.saasandroid.api.loaders.ResourceLoaderResult;
 import com.saasandroid.api.models.Weight;
 import com.saasandroid.api.models.WeightLogs;
 import com.saasandroid.api.services.WeightService;
 import com.saasandroid.activities.R;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
-
-import java.util.Calendar;
 import java.util.List;
 
-/**
- * Created by jboggess on 10/17/16.
- */
-
 public class WeightLogFragment extends InfoFragment<WeightLogs> {
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = super.onCreateView(inflater, container, savedInstanceState);
-        binding.webview.setVisibility(View.GONE);
-        binding.graph.setVisibility(View.VISIBLE);
-
-        return v;
-    }
 
     @Override
     public int getTitleResourceId() {
@@ -41,14 +27,12 @@ public class WeightLogFragment extends InfoFragment<WeightLogs> {
 
     @Override
     protected int getLoaderId() {
-        return 4;
+        return 3;
     }
 
     @Override
     public Loader<ResourceLoaderResult<WeightLogs>> onCreateLoader(int id, Bundle args) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, -1);
-        return WeightService.getWeightLogLoader(getActivity(), calendar.getTime(), Calendar.MONTH, 1);
+        return WeightService.getWeightLogLoader(getActivity());
     }
 
     @Override
@@ -60,27 +44,14 @@ public class WeightLogFragment extends InfoFragment<WeightLogs> {
     }
 
     public void bindWeightLogs(WeightLogs weightLogs) {
+        StringBuilder stringBuilder = new StringBuilder();
+
         List<Weight> weights = weightLogs.getWeight();
-        DataPoint[] dataPoints = new DataPoint[weights.size()];
-
-        for (int i = 0; i < weights.size(); i++) {
-            Weight weight = weights.get(i);
-            dataPoints[i] = new DataPoint(weight.getDateTime(), weight.getWeight());
+        for (Weight weight : weights) {
+            printKeys(stringBuilder, weight);
+            stringBuilder.append("<br /><br />");
         }
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
-        binding.graph.addSeries(series);
-
-        binding.graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
-        binding.graph.getGridLabelRenderer().setNumHorizontalLabels(3);
-
-        if (dataPoints.length != 0) {
-            binding.graph.getViewport().setMinX(dataPoints[0].getX());
-            binding.graph.getViewport().setMaxX(dataPoints[dataPoints.length - 1].getX());
-            binding.graph.getViewport().setXAxisBoundsManual(true);
-        }
-
-        binding.graph.getGridLabelRenderer().setHumanRounding(false);
-
+        setMainText(stringBuilder.toString());
     }
 }

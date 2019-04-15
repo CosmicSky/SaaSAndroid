@@ -8,9 +8,6 @@ import java.util.List;
 
 public class Summary {
 
-    @SerializedName("activeScore")
-    @Expose
-    private Integer activeScore;
     @SerializedName("activityCalories")
     @Expose
     private Integer activityCalories;
@@ -47,20 +44,6 @@ public class Summary {
     @SerializedName("veryActiveMinutes")
     @Expose
     private Integer veryActiveMinutes;
-
-    /**
-     * @return The activeScore
-     */
-    public Integer getActiveScore() {
-        return activeScore;
-    }
-
-    /**
-     * @param activeScore The activeScore
-     */
-    public void setActiveScore(Integer activeScore) {
-        this.activeScore = activeScore;
-    }
 
     /**
      * @return The activityCalories

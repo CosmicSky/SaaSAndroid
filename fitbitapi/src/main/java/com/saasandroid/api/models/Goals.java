@@ -14,9 +14,6 @@ public class Goals {
     @SerializedName("distance")
     @Expose
     private Double distance;
-    @SerializedName("floors")
-    @Expose
-    private Integer floors;
     @SerializedName("steps")
     @Expose
     private Integer steps;
@@ -61,20 +58,6 @@ public class Goals {
      */
     public void setDistance(Double distance) {
         this.distance = distance;
-    }
-
-    /**
-     * @return The floors
-     */
-    public Integer getFloors() {
-        return floors;
-    }
-
-    /**
-     * @param floors The floors
-     */
-    public void setFloors(Integer floors) {
-        this.floors = floors;
     }
 
     /**

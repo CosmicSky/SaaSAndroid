@@ -18,8 +18,6 @@ import com.saasandroid.api.models.Summary;
 import com.saasandroid.api.services.ActivityService;
 import com.saasandroid.activities.R;
 
-import java.util.Date;
-
 public class ActivitiesFragment extends InfoFragment<DailyActivitySummary> {
 
     @Override
@@ -29,12 +27,12 @@ public class ActivitiesFragment extends InfoFragment<DailyActivitySummary> {
 
     @Override
     protected int getLoaderId() {
-        return 3;
+        return 1;
     }
 
     @Override
     public Loader<ResourceLoaderResult<DailyActivitySummary>> onCreateLoader(int id, Bundle args) {
-        return ActivityService.getDailyActivitySummaryLoader(getActivity(), new Date());
+        return ActivityService.getDailyActivitySummaryLoader(getActivity());
     }
 
     @Override
