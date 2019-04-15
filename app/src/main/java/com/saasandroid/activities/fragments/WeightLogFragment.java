@@ -47,9 +47,14 @@ public class WeightLogFragment extends InfoFragment<WeightLogs> {
         StringBuilder stringBuilder = new StringBuilder();
 
         List<Weight> weights = weightLogs.getWeight();
-        for (Weight weight : weights) {
-            printKeys(stringBuilder, weight);
-            stringBuilder.append("<br /><br />");
+
+        if (weights.isEmpty()) {
+            stringBuilder.append("Missing Weight Data");
+        } else {
+            for (Weight weight : weights) {
+                printKeys(stringBuilder, weight);
+                stringBuilder.append("<br /><br />");
+            }
         }
 
         setMainText(stringBuilder.toString());
