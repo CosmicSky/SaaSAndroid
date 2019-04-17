@@ -12,7 +12,7 @@ public class HeartRate {
     private Date dateTime;
     @SerializedName("value")
     @Expose
-    private Value value;
+    private HeartRateValue value;
 
     /**
      * @return The dateTime
@@ -31,14 +31,14 @@ public class HeartRate {
     /**
      * @return The value
      */
-    public Value getValue() {
+    public HeartRateValue getValue() {
         return value;
     }
 
     /**
      * @param value The value
      */
-    public void setValue(Value value) {
+    public void setValue(HeartRateValue value) {
         this.value = value;
     }
 }

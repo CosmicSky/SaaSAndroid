@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import com.saasandroid.api.loaders.ResourceLoaderResult;
 import com.saasandroid.activities.R;
+import com.saasandroid.api.models.Sleep;
 import com.saasandroid.api.models.SleepLogs;
 import com.saasandroid.api.models.SleepSummary;
 import com.saasandroid.api.services.SleepService;
@@ -48,13 +49,13 @@ public class SleepFragment extends InfoFragment<SleepLogs> {
         StringBuilder stringBuilder = new StringBuilder();
 
         SleepSummary summary = sleepLogs.getSummary();
-        List<Object> sleeps = sleepLogs.getSleep();
+        List<Sleep> sleeps = sleepLogs.getSleep();
 
         stringBuilder.append("<b>SUMMARY</b> ");
         stringBuilder.append("<br />");
         printKeys(stringBuilder, summary);
 
-        for (Object sleep : sleeps) {
+        for (Sleep sleep : sleeps) {
             stringBuilder.append("<br /><br />");
             stringBuilder.append("<b>SLEEP</b> ");
             stringBuilder.append("<br />");

@@ -7,6 +7,7 @@ import java.time.Clock;
 
 
 public class Activity {
+
     @SerializedName("activityId")
     @Expose
     private Integer activityId;

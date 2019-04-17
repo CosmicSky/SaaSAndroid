@@ -16,7 +16,7 @@ import com.saasandroid.api.models.HeartRate;
 import com.saasandroid.api.models.HeartRateLogs;
 import com.saasandroid.api.models.HeartRateZones;
 import com.saasandroid.activities.R;
-import com.saasandroid.api.models.Value;
+import com.saasandroid.api.models.HeartRateValue;
 import com.saasandroid.api.services.HeartRateService;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public class HeartRateFragment extends InfoFragment<HeartRateLogs> {
                 stringBuilder.append("<br />");
                 printKeys(stringBuilder, currentHeartRate.getDateTime());
 
-                Value currentValue = currentHeartRate.getValue();
+                HeartRateValue currentValue = currentHeartRate.getValue();
                 Integer restingHeartRate = currentValue.getRestingHeartRate();
                 stringBuilder.append("<br /><br />");
                 stringBuilder.append("<b>RESTING HEARTRATE</b> ");

@@ -3,7 +3,7 @@ package com.saasandroid.api.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class NutritionalValues {
+public class FoodNutritionalValues {
 
     @SerializedName("calories")
     @Expose

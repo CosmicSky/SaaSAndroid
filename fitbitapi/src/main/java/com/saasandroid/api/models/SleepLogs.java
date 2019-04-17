@@ -10,7 +10,7 @@ public class SleepLogs {
 
     @SerializedName("sleep")
     @Expose
-    private List<Object> sleep = new ArrayList<>();
+    private List<Sleep> sleep = new ArrayList<>();
     @SerializedName("summary")
     @Expose
     private SleepSummary summary;
@@ -18,14 +18,14 @@ public class SleepLogs {
     /**
      * @return The sleep
      */
-    public List<Object> getSleep() {
+    public List<Sleep> getSleep() {
         return sleep;
     }
 
     /**
      * @param sleep The sleep
      */
-    public void setSleep(List<Object> sleep) {
+    public void setSleep(List<Sleep> sleep) {
         this.sleep = sleep;
     }
 

@@ -17,10 +17,10 @@ public class Food {
     private Integer logId;
     @SerializedName("loggedFood")
     @Expose
-    private LoggedFood loggedFood;
+    private FoodLogged loggedFood;
     @SerializedName("nutritionalValues")
     @Expose
-    private NutritionalValues nutritionalValues;
+    private FoodNutritionalValues nutritionalValues;
 
     /**
      * @return The isFavorite
@@ -67,28 +67,28 @@ public class Food {
     /**
      * @return The loggedFood
      */
-    public LoggedFood getLoggedFood() {
+    public FoodLogged getLoggedFood() {
         return loggedFood;
     }
 
     /**
      * @param loggedFood The loggedFood
      */
-    public void setLoggedFood(LoggedFood loggedFood) {
+    public void setLoggedFood(FoodLogged loggedFood) {
         this.loggedFood = loggedFood;
     }
 
     /**
      * @return The nutritionalValues
      */
-    public NutritionalValues getNutritionalValues() {
+    public FoodNutritionalValues getNutritionalValues() {
         return nutritionalValues;
     }
 
     /**
      * @param nutritionalValues The nutritionalValues
      */
-    public void setNutritionalValues(NutritionalValues nutritionalValues) {
+    public void setNutritionalValues(FoodNutritionalValues nutritionalValues) {
         this.nutritionalValues = nutritionalValues;
     }
 }

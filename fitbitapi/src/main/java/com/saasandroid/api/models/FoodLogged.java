@@ -6,7 +6,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoggedFood {
+public class FoodLogged {
+
     @SerializedName("accessLevel")
     @Expose
     private String accessLevel;
