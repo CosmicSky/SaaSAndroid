@@ -10,7 +10,7 @@ public class FoodLogs {
 
     @SerializedName("foods")
     @Expose
-    private List<Object> foods = new ArrayList<Object>();
+    private List<Food> foods = new ArrayList<>();
     @SerializedName("goals")
     @Expose
     private FoodGoals goals;
@@ -21,14 +21,14 @@ public class FoodLogs {
     /**
      * @return The foods
      */
-    public List<Object> getFoods() {
+    public List<Food> getFoods() {
         return foods;
     }
 
     /**
      * @param foods The foods
      */
-    public void setFoods(List<Object> foods) {
+    public void setFoods(List<Food> foods) {
         this.foods = foods;
     }
 
