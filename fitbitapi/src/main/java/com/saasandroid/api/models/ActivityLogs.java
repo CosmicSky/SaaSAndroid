@@ -6,17 +6,17 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DailyActivitySummary {
+public class ActivityLogs {
 
     @SerializedName("activities")
     @Expose
     private List<Object> activities = new ArrayList<Object>();
     @SerializedName("goals")
     @Expose
-    private Goals goals;
+    private ActivityGoals goals;
     @SerializedName("summary")
     @Expose
-    private Summary summary;
+    private ActivitySummary summary;
 
     /**
      * @return The activities
@@ -35,28 +35,28 @@ public class DailyActivitySummary {
     /**
      * @return The goals
      */
-    public Goals getGoals() {
+    public ActivityGoals getGoals() {
         return goals;
     }
 
     /**
      * @param goals The goals
      */
-    public void setGoals(Goals goals) {
+    public void setGoals(ActivityGoals goals) {
         this.goals = goals;
     }
 
     /**
      * @return The summary
      */
-    public Summary getSummary() {
+    public ActivitySummary getSummary() {
         return summary;
     }
 
     /**
      * @param summary The summary
      */
-    public void setSummary(Summary summary) {
+    public void setSummary(ActivitySummary summary) {
         this.summary = summary;
     }
 

@@ -32,7 +32,7 @@ public class WeightLogFragment extends InfoFragment<WeightLogs> {
 
     @Override
     public Loader<ResourceLoaderResult<WeightLogs>> onCreateLoader(int id, Bundle args) {
-        return WeightService.getWeightLogLoader(getActivity());
+        return WeightService.getWeightLoader(getActivity());
     }
 
     @Override

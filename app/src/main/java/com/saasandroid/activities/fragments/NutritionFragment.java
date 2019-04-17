@@ -12,11 +12,15 @@ import android.content.Loader;
 import android.os.Bundle;
 
 import com.saasandroid.api.loaders.ResourceLoaderResult;
-import com.saasandroid.api.models.FoodSummary;
+import com.saasandroid.api.models.FoodGoals;
+import com.saasandroid.api.models.FoodLogs;
 import com.saasandroid.activities.R;
+import com.saasandroid.api.models.FoodSummary;
 import com.saasandroid.api.services.FoodSummaryService;
 
-public class NutritionFragment extends InfoFragment<FoodSummary> {
+import java.util.List;
+
+public class NutritionFragment extends InfoFragment<FoodLogs> {
 
     @Override
     public int getTitleResourceId() {
@@ -29,27 +33,39 @@ public class NutritionFragment extends InfoFragment<FoodSummary> {
     }
 
     @Override
-    public Loader<ResourceLoaderResult<FoodSummary>> onCreateLoader(int id, Bundle args) {
-        return FoodSummaryService.getFoodSummaryLoader(getActivity());
+    public Loader<ResourceLoaderResult<FoodLogs>> onCreateLoader(int id, Bundle args) {
+        return FoodSummaryService.getFoodLoader(getActivity());
     }
 
     @Override
-    public void onLoadFinished(Loader<ResourceLoaderResult<FoodSummary>> loader, ResourceLoaderResult<FoodSummary> data) {
+    public void onLoadFinished(Loader<ResourceLoaderResult<FoodLogs>> loader, ResourceLoaderResult<FoodLogs> data) {
         super.onLoadFinished(loader, data);
         if (data.isSuccessful()) {
             bindActivityData(data.getResult());
         }
     }
 
-    public void bindActivityData(FoodSummary foodSummary) {
+    public void bindActivityData(FoodLogs foodLogs) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        if (foodSummary.getCalories() == null) {
-            stringBuilder.append("Missing Today's Nutrition Data");
-        } else {
-            stringBuilder.append("<b>SUMMARY</b> ");
+        FoodSummary foodSummary = foodLogs.getSummary();
+        FoodGoals foodGoals = foodLogs.getGoals();
+        List<Object> foods = foodLogs.getFoods();
+
+        stringBuilder.append("<b>SUMMARY</b> ");
+        stringBuilder.append("<br />");
+        printKeys(stringBuilder, foodSummary);
+
+        stringBuilder.append("<br /><br />");
+        stringBuilder.append("<b>GOALS</b> ");
+        stringBuilder.append("<br />");
+        printKeys(stringBuilder, foodGoals);
+
+        for (Object food : foods) {
+            stringBuilder.append("<br /><br />");
+            stringBuilder.append("<b>FOOD</b> ");
             stringBuilder.append("<br />");
-            printKeys(stringBuilder, foodSummary);
+            printKeys(stringBuilder, food);
         }
 
         setMainText(stringBuilder.toString());

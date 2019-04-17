@@ -13,12 +13,15 @@ import android.os.Bundle;
 
 import com.saasandroid.api.loaders.ResourceLoaderResult;
 import com.saasandroid.api.models.HeartRate;
+import com.saasandroid.api.models.HeartRateLogs;
 import com.saasandroid.api.models.HeartRateZones;
 import com.saasandroid.activities.R;
 import com.saasandroid.api.models.Value;
 import com.saasandroid.api.services.HeartRateService;
 
-public class HeartRateFragment extends InfoFragment<HeartRate> {
+import java.util.List;
+
+public class HeartRateFragment extends InfoFragment<HeartRateLogs> {
 
     @Override
     public int getTitleResourceId() {
@@ -31,38 +34,44 @@ public class HeartRateFragment extends InfoFragment<HeartRate> {
     }
 
     @Override
-    public Loader<ResourceLoaderResult<HeartRate>> onCreateLoader(int id, Bundle args) {
+    public Loader<ResourceLoaderResult<HeartRateLogs>> onCreateLoader(int id, Bundle args) {
         return HeartRateService.getHeartRateLoader(getActivity());
     }
 
     @Override
-    public void onLoadFinished(Loader<ResourceLoaderResult<HeartRate>> loader, ResourceLoaderResult<HeartRate> data) {
+    public void onLoadFinished(Loader<ResourceLoaderResult<HeartRateLogs>> loader, ResourceLoaderResult<HeartRateLogs> data) {
         super.onLoadFinished(loader, data);
         if (data.isSuccessful()) {
             bindActivityData(data.getResult());
         }
     }
 
-    public void bindActivityData(HeartRate heartRate) {
+    public void bindActivityData(HeartRateLogs heartRate) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        Value value = heartRate.getValue();
-
-        if (value == null) {
+        List<HeartRate> heartRates = heartRate.getHeartRate();
+        if (heartRates.isEmpty()) {
             stringBuilder.append("Missing Today's Heartrate Data");
         } else {
-            stringBuilder.append("<b>INFORMATION</b> ");
-            stringBuilder.append("<br />");
-            printKeys(stringBuilder, heartRate.getDateTime());
-            printKeys(stringBuilder, heartRate.getRestingHeartRate());
+            for (HeartRate currentHeartRate : heartRates) {
+                stringBuilder.append("<b>INFORMATION</b> ");
+                stringBuilder.append("<br />");
+                printKeys(stringBuilder, currentHeartRate.getDateTime());
 
-            HeartRateZones[] heartRateZones = value.getHeartRateZones();
+                Value currentValue = currentHeartRate.getValue();
+                Integer restingHeartRate = currentValue.getRestingHeartRate();
+                stringBuilder.append("<br /><br />");
+                stringBuilder.append("<b>RESTING HEARTRATE</b> ");
+                stringBuilder.append("<br />");
+                printKeys(stringBuilder, restingHeartRate);
 
-            stringBuilder.append("<br /><br />");
-            stringBuilder.append("<b>HEARTRATE ZONES</b> ");
-            stringBuilder.append("<br />");
-            for (HeartRateZones heartRateZone : heartRateZones) {
-                printKeys(stringBuilder, heartRateZone);
+                List<HeartRateZones> heartRateZones = currentValue.getHeartRateZones();
+                stringBuilder.append("<br /><br />");
+                stringBuilder.append("<b>HEARTRATE ZONES</b> ");
+                stringBuilder.append("<br />");
+                for (HeartRateZones heartRateZone : heartRateZones) {
+                    printKeys(stringBuilder, heartRateZone);
+                }
             }
         }
 

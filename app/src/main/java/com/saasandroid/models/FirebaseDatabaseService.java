@@ -65,9 +65,9 @@ public class FirebaseDatabaseService implements DatabaseService {
     @Override
     public void joinStudy(String studyId) {
         DatabaseReference studyParticipantReference = mDatabase.getReference("study_participant");
-        studyParticipantReference.child(CurrentState.getAuthentication().getUserId()).child("studies").push().setValue(studyId);
+        studyParticipantReference.child(CurrentState.getAuthentication().getUserId()).child("studies").child(studyId).setValue(true);
         DatabaseReference studyReference = mDatabase.getReference("study");
-        studyReference.child(studyId).child("participants").push().setValue(CurrentState.getAuthentication().getUserId());
+        studyReference.child(studyId).child("participants").child(CurrentState.getAuthentication().getUserId()).setValue(true);
     }
 
     @Override
@@ -151,5 +151,11 @@ public class FirebaseDatabaseService implements DatabaseService {
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         });
+    }
+
+    @Override
+    public <T> void addFitbitData(String type, T data) {
+        DatabaseReference studyParticipantReference = mDatabase.getReference("health_data");
+        studyParticipantReference.child(CurrentState.getAuthentication().getUserId()).child(type).setValue(data);
     }
 }

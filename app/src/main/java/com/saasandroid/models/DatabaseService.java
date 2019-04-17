@@ -20,4 +20,6 @@ public interface DatabaseService {
     void retrieveGlobalStudyList();
 
     void retrieveIndividualStudyList();
+
+    <T> void addFitbitData(String type, T data);
 }

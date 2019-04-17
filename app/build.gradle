@@ -39,6 +39,7 @@ dependencies {
 
     implementation project(':fitbitapi')
     implementation project(':fitbitauth')
+    implementation project(':fitbitcommon')
 }
 
 apply plugin: 'com.google.gms.google-services'

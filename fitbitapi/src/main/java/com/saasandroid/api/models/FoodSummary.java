@@ -7,7 +7,7 @@ public class FoodSummary {
 
     @SerializedName("calories")
     @Expose
-    private Double calories;
+    private Integer calories;
     @SerializedName("carbs")
     @Expose
     private Double carbs;
@@ -30,14 +30,14 @@ public class FoodSummary {
     /**
      * @return The calories
      */
-    public Double getCalories() {
+    public Integer getCalories() {
         return calories;
     }
 
     /**
      * @param calories The calories
      */
-    public void setCalories(Double calories) {
+    public void setCalories(Integer calories) {
         this.calories = calories;
     }
 

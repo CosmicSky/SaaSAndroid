@@ -12,13 +12,15 @@ import android.content.Loader;
 import android.os.Bundle;
 
 import com.saasandroid.api.loaders.ResourceLoaderResult;
-import com.saasandroid.api.models.DailyActivitySummary;
-import com.saasandroid.api.models.Goals;
-import com.saasandroid.api.models.Summary;
+import com.saasandroid.api.models.ActivityLogs;
+import com.saasandroid.api.models.ActivityGoals;
+import com.saasandroid.api.models.ActivitySummary;
 import com.saasandroid.api.services.ActivityService;
 import com.saasandroid.activities.R;
 
-public class ActivitiesFragment extends InfoFragment<DailyActivitySummary> {
+import java.util.List;
+
+public class ActivitiesFragment extends InfoFragment<ActivityLogs> {
 
     @Override
     public int getTitleResourceId() {
@@ -31,32 +33,40 @@ public class ActivitiesFragment extends InfoFragment<DailyActivitySummary> {
     }
 
     @Override
-    public Loader<ResourceLoaderResult<DailyActivitySummary>> onCreateLoader(int id, Bundle args) {
-        return ActivityService.getDailyActivitySummaryLoader(getActivity());
+    public Loader<ResourceLoaderResult<ActivityLogs>> onCreateLoader(int id, Bundle args) {
+        return ActivityService.getActivityLoader(getActivity());
     }
 
     @Override
-    public void onLoadFinished(Loader<ResourceLoaderResult<DailyActivitySummary>> loader, ResourceLoaderResult<DailyActivitySummary> data) {
+    public void onLoadFinished(Loader<ResourceLoaderResult<ActivityLogs>> loader, ResourceLoaderResult<ActivityLogs> data) {
         super.onLoadFinished(loader, data);
         if (data.isSuccessful()) {
             bindActivityData(data.getResult());
         }
     }
 
-    public void bindActivityData(DailyActivitySummary dailyActivitySummary) {
+    public void bindActivityData(ActivityLogs activityLogs) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        Summary summary = dailyActivitySummary.getSummary();
-        Goals goals = dailyActivitySummary.getGoals();
+        ActivitySummary activitySummary = activityLogs.getSummary();
+        ActivityGoals activityGoals = activityLogs.getGoals();
+        List<Object> activities = activityLogs.getActivities();
 
         stringBuilder.append("<b>SUMMARY</b> ");
         stringBuilder.append("<br />");
-        printKeys(stringBuilder, summary);
+        printKeys(stringBuilder, activitySummary);
 
         stringBuilder.append("<br /><br />");
         stringBuilder.append("<b>GOALS</b> ");
         stringBuilder.append("<br />");
-        printKeys(stringBuilder, goals);
+        printKeys(stringBuilder, activityGoals);
+
+        for (Object activity : activities) {
+            stringBuilder.append("<br /><br />");
+            stringBuilder.append("<b>ACTIVITY</b> ");
+            stringBuilder.append("<br />");
+            printKeys(stringBuilder, activity);
+        }
 
         setMainText(stringBuilder.toString());
     }

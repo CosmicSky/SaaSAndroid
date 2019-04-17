@@ -13,10 +13,13 @@ import android.os.Bundle;
 
 import com.saasandroid.api.loaders.ResourceLoaderResult;
 import com.saasandroid.activities.R;
+import com.saasandroid.api.models.SleepLogs;
 import com.saasandroid.api.models.SleepSummary;
-import com.saasandroid.api.services.SleepSummaryService;
+import com.saasandroid.api.services.SleepService;
 
-public class SleepFragment extends InfoFragment<SleepSummary> {
+import java.util.List;
+
+public class SleepFragment extends InfoFragment<SleepLogs> {
 
     @Override
     public int getTitleResourceId() {
@@ -29,25 +32,33 @@ public class SleepFragment extends InfoFragment<SleepSummary> {
     }
 
     @Override
-    public Loader<ResourceLoaderResult<SleepSummary>> onCreateLoader(int id, Bundle args) {
-        return SleepSummaryService.getSleepSummaryLoader(getActivity());
+    public Loader<ResourceLoaderResult<SleepLogs>> onCreateLoader(int id, Bundle args) {
+        return SleepService.getSleepLoader(getActivity());
     }
 
     @Override
-    public void onLoadFinished(Loader<ResourceLoaderResult<SleepSummary>> loader, ResourceLoaderResult<SleepSummary> data) {
+    public void onLoadFinished(Loader<ResourceLoaderResult<SleepLogs>> loader, ResourceLoaderResult<SleepLogs> data) {
         super.onLoadFinished(loader, data);
         if (data.isSuccessful()) {
             bindActivityData(data.getResult());
         }
     }
 
-    public void bindActivityData(SleepSummary sleepSummary) {
+    public void bindActivityData(SleepLogs sleepLogs) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        if (sleepSummary.getTotalMinutesAsleep() == null) {
-            stringBuilder.append("Missing Today's Sleep Data");
-        } else {
-            printKeys(stringBuilder, sleepSummary);
+        SleepSummary summary = sleepLogs.getSummary();
+        List<Object> sleeps = sleepLogs.getSleep();
+
+        stringBuilder.append("<b>SUMMARY</b> ");
+        stringBuilder.append("<br />");
+        printKeys(stringBuilder, summary);
+
+        for (Object sleep : sleeps) {
+            stringBuilder.append("<br /><br />");
+            stringBuilder.append("<b>SLEEP</b> ");
+            stringBuilder.append("<br />");
+            printKeys(stringBuilder, sleep);
         }
 
         setMainText(stringBuilder.toString());
