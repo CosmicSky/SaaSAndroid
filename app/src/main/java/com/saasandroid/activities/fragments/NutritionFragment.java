@@ -57,7 +57,7 @@ public class NutritionFragment extends InfoFragment<FoodLogs> {
         stringBuilder.append("<br />");
         printKeys(stringBuilder, foodSummary);
 
-        if (foodGoals.getCalories() != null) {
+        if (foodGoals != null) {
             stringBuilder.append("<br /><br />");
             stringBuilder.append("<b>GOALS</b> ");
             stringBuilder.append("<br />");

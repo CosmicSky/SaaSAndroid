@@ -25,7 +25,7 @@ public class Food {
     /**
      * @return The isFavorite
      */
-    public boolean getIsFavorite() {
+    public boolean isFavorite() {
         return isFavorite;
     }
 

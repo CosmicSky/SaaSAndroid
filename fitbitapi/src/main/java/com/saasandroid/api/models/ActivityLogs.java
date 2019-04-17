@@ -10,7 +10,7 @@ public class ActivityLogs {
 
     @SerializedName("activities")
     @Expose
-    private List<Object> activities = new ArrayList<Object>();
+    private List<Activity> activities = new ArrayList<>();
     @SerializedName("goals")
     @Expose
     private ActivityGoals goals;
@@ -21,14 +21,14 @@ public class ActivityLogs {
     /**
      * @return The activities
      */
-    public List<Object> getActivities() {
+    public List<Activity> getActivities() {
         return activities;
     }
 
     /**
      * @param activities The activities
      */
-    public void setActivities(List<Object> activities) {
+    public void setActivities(List<Activity> activities) {
         this.activities = activities;
     }
 

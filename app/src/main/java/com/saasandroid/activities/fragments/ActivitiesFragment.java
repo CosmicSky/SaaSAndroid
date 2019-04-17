@@ -12,6 +12,7 @@ import android.content.Loader;
 import android.os.Bundle;
 
 import com.saasandroid.api.loaders.ResourceLoaderResult;
+import com.saasandroid.api.models.Activity;
 import com.saasandroid.api.models.ActivityLogs;
 import com.saasandroid.api.models.ActivityGoals;
 import com.saasandroid.api.models.ActivitySummary;
@@ -50,7 +51,7 @@ public class ActivitiesFragment extends InfoFragment<ActivityLogs> {
 
         ActivitySummary activitySummary = activityLogs.getSummary();
         ActivityGoals activityGoals = activityLogs.getGoals();
-        List<Object> activities = activityLogs.getActivities();
+        List<Activity> activities = activityLogs.getActivities();
 
         stringBuilder.append("<b>SUMMARY</b> ");
         stringBuilder.append("<br />");
@@ -61,7 +62,7 @@ public class ActivitiesFragment extends InfoFragment<ActivityLogs> {
         stringBuilder.append("<br />");
         printKeys(stringBuilder, activityGoals);
 
-        for (Object activity : activities) {
+        for (Activity activity : activities) {
             stringBuilder.append("<br /><br />");
             stringBuilder.append("<b>ACTIVITY</b> ");
             stringBuilder.append("<br />");
