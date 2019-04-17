@@ -23,8 +23,9 @@ import android.view.MenuItem;
 import com.saasandroid.activities.databinding.ActivityDataBinding;
 import com.saasandroid.authentication.AuthenticationManager;
 import com.saasandroid.utilities.BottomNavigationViewHelper;
+import com.saasandroid.utilities.DataPagerAdapter;
 
-import static com.saasandroid.models.FitbitAuthentication.generateAuthenticationConfiguration;
+import static com.saasandroid.saasandroidlibrary.models.FitbitAuthentication.generateAuthenticationConfiguration;
 
 public class DataActivity extends Activity {
     private ActivityDataBinding binding;

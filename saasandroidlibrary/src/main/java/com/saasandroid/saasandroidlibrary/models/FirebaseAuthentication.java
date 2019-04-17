@@ -6,7 +6,7 @@
 //  Copyright © 2019 Tony Qi. All rights reserved.
 //
 
-package com.saasandroid.models;
+package com.saasandroid.saasandroidlibrary.models;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.saasandroid.activities.AccountVerificationActivity;
-import com.saasandroid.activities.StudiesActivity;
 
 public class FirebaseAuthentication implements Authentication {
     private FirebaseAuth mAuth;
@@ -28,7 +26,7 @@ public class FirebaseAuthentication implements Authentication {
     }
 
     @Override
-    public void signIn(final Context mContext, String email, String password) {
+    public void signIn(final Context mContext, final Class studies, final Class accountVerification, String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -37,9 +35,9 @@ public class FirebaseAuthentication implements Authentication {
                     if (CurrentState.getAuthentication().isVerified()) {
                         CurrentState.getDatabase().retrieveIndividualStudyList();
                         CurrentState.getDatabase().retrieveGlobalStudyList();
-                        mContext.startActivity(new Intent(mContext, StudiesActivity.class));
+                        mContext.startActivity(new Intent(mContext, studies));
                     } else {
-                        mContext.startActivity(new Intent(mContext, AccountVerificationActivity.class));
+                        mContext.startActivity(new Intent(mContext, accountVerification));
                     }
                 } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
@@ -52,7 +50,7 @@ public class FirebaseAuthentication implements Authentication {
     }
 
     @Override
-    public void register(final Context mContext, final StudyParticipant newUser, String email, String password) {
+    public void register(final Context mContext, final Class accountVerification, final StudyParticipant newUser, String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -61,7 +59,7 @@ public class FirebaseAuthentication implements Authentication {
                     String userId = CurrentState.getAuthentication().getUserId();
                     CurrentState.getDatabase().addStudyParticipant(newUser, userId);
                     CurrentState.setStudyParticipant(newUser);
-                    mContext.startActivity(new Intent(mContext, AccountVerificationActivity.class));
+                    mContext.startActivity(new Intent(mContext, accountVerification));
                 } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
                     alert.setTitle("Email Is In Use");

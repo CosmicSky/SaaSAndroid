@@ -6,7 +6,7 @@
 //  Copyright © 2019 Tony Qi. All rights reserved.
 //
 
-package com.saasandroid.models;
+package com.saasandroid.saasandroidlibrary.models;
 
 public class StudyParticipant {
     private String firstName;

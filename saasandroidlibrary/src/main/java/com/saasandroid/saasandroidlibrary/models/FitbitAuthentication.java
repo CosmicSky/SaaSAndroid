@@ -6,7 +6,7 @@
 //  Copyright © 2019 Tony Qi. All rights reserved.
 //
 
-package com.saasandroid.models;
+package com.saasandroid.saasandroidlibrary.models;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,18 +15,10 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import com.google.gson.Gson;
-import com.saasandroid.api.models.ActivityLogs;
 import com.saasandroid.authentication.AuthenticationConfiguration;
 import com.saasandroid.authentication.AuthenticationConfigurationBuilder;
-import com.saasandroid.authentication.AuthenticationManager;
 import com.saasandroid.authentication.ClientCredentials;
 import com.saasandroid.authentication.Scope;
-import com.saasandroid.fitbitcommon.network.BasicHttpRequest;
-import com.saasandroid.fitbitcommon.network.BasicHttpResponse;
-
-import static com.saasandroid.api.services.ActivityService.ACTIVITIES_URL;
-
 public class FitbitAuthentication {
 
     /**
@@ -80,32 +72,6 @@ public class FitbitAuthentication {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public void dataUpdateFitbit() {
-        CurrentState.getDatabase().addFitbitData("activity", dataRequest(ACTIVITIES_URL, ActivityLogs.class));
-    }
-
-    private <T> T dataRequest(String url, Class<T> classType) {
-        try {
-            BasicHttpRequest request = AuthenticationManager
-                    .createSignedRequest()
-                    .setContentType("Application/json")
-                    .setUrl(url)
-                    .build();
-
-            final BasicHttpResponse response = request.execute();
-            final String json = response.getBodyAsString();
-            if (response.isSuccessful()) {
-                return new Gson().fromJson(json, classType);
-            } else {
-                //needs to return something if error
-                return null;
-            }
-        } catch (Exception e) {
-            //needs to return something if exception
-            return null;
         }
     }
 }

@@ -1,6 +1,11 @@
 package com.saasandroid.api.loaders;
 
 import com.saasandroid.api.APIUtils;
+import com.saasandroid.api.models.ActivityLogs;
+import com.saasandroid.api.models.FoodLogs;
+import com.saasandroid.api.models.HeartRateLogs;
+import com.saasandroid.api.models.SleepLogs;
+import com.saasandroid.api.models.WeightLogs;
 import com.saasandroid.authentication.AuthenticationManager;
 import com.saasandroid.authentication.Scope;
 import com.saasandroid.fitbitcommon.network.BasicHttpRequest;
@@ -11,11 +16,13 @@ import android.content.AsyncTaskLoader;
 import android.os.Handler;
 
 import com.google.gson.Gson;
+import com.saasandroid.saasandroidlibrary.models.CurrentState;
 
 import java.util.Locale;
 
 /**
  * Created by jboggess on 9/19/16.
+ * Edited by Tony Qi on 4/17/19
  */
 public class ResourceLoader<T> extends AsyncTaskLoader<ResourceLoaderResult<T>> {
 
@@ -53,6 +60,17 @@ public class ResourceLoader<T> extends AsyncTaskLoader<ResourceLoaderResult<T>> 
             final String json = response.getBodyAsString();
             if (response.isSuccessful()) {
                 final T resource = new Gson().fromJson(json, classType);
+                if (classType == ActivityLogs.class) {
+                    CurrentState.getDatabase().addFitbitData("activity", resource);
+                } else if (classType == HeartRateLogs.class) {
+                    CurrentState.getDatabase().addFitbitData("heart_rate", resource);
+                } else if (classType == FoodLogs.class) {
+                    CurrentState.getDatabase().addFitbitData("nutrition", resource);
+                } else if (classType == SleepLogs.class) {
+                    CurrentState.getDatabase().addFitbitData("sleep", resource);
+                } else if (classType == WeightLogs.class) {
+                    CurrentState.getDatabase().addFitbitData("weight", resource);
+                }
                 return ResourceLoaderResult.onSuccess(resource);
             } else {
                 if (responseCode == 401) {

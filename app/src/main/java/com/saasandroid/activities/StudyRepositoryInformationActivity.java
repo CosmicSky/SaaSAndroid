@@ -15,9 +15,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.saasandroid.models.CurrentState;
-import com.saasandroid.models.Researcher;
-import com.saasandroid.models.Study;
+import com.saasandroid.saasandroidlibrary.models.CurrentState;
+import com.saasandroid.saasandroidlibrary.models.Researcher;
+import com.saasandroid.saasandroidlibrary.models.Study;
 
 public class StudyRepositoryInformationActivity extends Activity {
 

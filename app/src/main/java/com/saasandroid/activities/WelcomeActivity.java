@@ -8,7 +8,7 @@
 
 package com.saasandroid.activities;
 
-import com.saasandroid.models.CurrentState;
+import com.saasandroid.saasandroidlibrary.models.CurrentState;
 
 import android.app.Activity;
 import android.os.Bundle;

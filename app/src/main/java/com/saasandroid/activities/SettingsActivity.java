@@ -27,11 +27,12 @@ import com.saasandroid.authentication.AuthenticationHandler;
 import com.saasandroid.authentication.AuthenticationManager;
 import com.saasandroid.authentication.AuthenticationResult;
 import com.saasandroid.authentication.Scope;
+import com.saasandroid.saasandroidlibrary.models.FitbitAuthentication;
 import com.saasandroid.utilities.BottomNavigationViewHelper;
 
 import java.util.Set;
 
-import static com.saasandroid.models.FitbitAuthentication.generateAuthenticationConfiguration;
+import static com.saasandroid.saasandroidlibrary.models.FitbitAuthentication.generateAuthenticationConfiguration;
 
 public class SettingsActivity extends Activity implements AuthenticationHandler {
 

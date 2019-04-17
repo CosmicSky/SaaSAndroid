@@ -12,9 +12,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.saasandroid.models.CurrentState;
-import com.saasandroid.models.Researcher;
-import com.saasandroid.models.Study;
+import com.saasandroid.saasandroidlibrary.models.CurrentState;
+import com.saasandroid.saasandroidlibrary.models.Researcher;
+import com.saasandroid.saasandroidlibrary.models.Study;
 
 public class StudyInformationActivity extends Activity {
 

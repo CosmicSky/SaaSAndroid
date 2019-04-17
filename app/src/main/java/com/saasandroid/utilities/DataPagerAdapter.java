@@ -6,7 +6,7 @@
 //  Copyright © 2019 Tony Qi. All rights reserved.
 //
 
-package com.saasandroid.activities;
+package com.saasandroid.utilities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;

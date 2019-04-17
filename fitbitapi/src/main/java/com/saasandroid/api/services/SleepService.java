@@ -12,7 +12,7 @@ import android.content.Loader;
 
 public class SleepService {
 
-    private final static String SLEEP_URL = "https://api.fitbit.com/1.2/user/-/sleep/date/today.json";
+    public final static String SLEEP_URL = "https://api.fitbit.com/1.2/user/-/sleep/date/today.json";
     private static final ResourceLoaderFactory<SleepLogs> SLEEP_LOADER_FACTORY = new ResourceLoaderFactory<>(SLEEP_URL, SleepLogs.class);
 
     public static Loader<ResourceLoaderResult<SleepLogs>> getSleepLoader(Activity activityContext) throws MissingScopesException, TokenExpiredException {

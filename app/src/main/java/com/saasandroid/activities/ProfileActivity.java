@@ -20,8 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.saasandroid.models.CurrentState;
-import com.saasandroid.models.StudyParticipant;
+import com.saasandroid.saasandroidlibrary.models.CurrentState;
+import com.saasandroid.saasandroidlibrary.models.StudyParticipant;
 import com.saasandroid.utilities.BottomNavigationViewHelper;
 
 public class ProfileActivity extends Activity {

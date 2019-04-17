@@ -21,8 +21,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.saasandroid.models.CurrentState;
-import com.saasandroid.models.Study;
+import com.saasandroid.saasandroidlibrary.models.CurrentState;
+import com.saasandroid.saasandroidlibrary.models.Study;
 import com.saasandroid.utilities.BottomNavigationViewHelper;
 
 public class StudiesActivity extends Activity {

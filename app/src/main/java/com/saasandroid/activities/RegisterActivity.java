@@ -8,13 +8,12 @@
 
 package com.saasandroid.activities;
 
-import com.saasandroid.models.CurrentState;
-import com.saasandroid.models.StudyParticipant;
+import com.saasandroid.saasandroidlibrary.models.CurrentState;
+import com.saasandroid.saasandroidlibrary.models.StudyParticipant;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,8 +22,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static android.content.ContentValues.TAG;
 
 public class RegisterActivity extends Activity {
     private EditText mFirstName;
@@ -96,8 +93,8 @@ public class RegisterActivity extends Activity {
                     StudyParticipant newUser = new StudyParticipant(firstName, lastName,
                             mDateOfBirth.getText().toString(), mZipCode.getText().toString(),
                             mCountry.getText().toString(), mEmail.getText().toString());
-                    CurrentState.getAuthentication().register(RegisterActivity.this, newUser,
-                            mEmail.getText().toString(), mPassword.getText().toString());
+                    CurrentState.getAuthentication().register(RegisterActivity.this, AccountVerificationActivity.class,
+                            newUser, mEmail.getText().toString(), mPassword.getText().toString());
                 }
             }
         });

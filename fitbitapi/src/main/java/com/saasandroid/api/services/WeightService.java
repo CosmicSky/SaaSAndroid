@@ -12,7 +12,7 @@ import android.content.Loader;
 
 public class WeightService {
 
-    private final static String WEIGHT_URL = "https://api.fitbit.com/1/user/-/body/log/weight/date/today.json";
+    public final static String WEIGHT_URL = "https://api.fitbit.com/1/user/-/body/log/weight/date/today.json";
     private static final ResourceLoaderFactory<WeightLogs> WEIGHT_LOG_LOADER_FACTORY = new ResourceLoaderFactory<>(WEIGHT_URL, WeightLogs.class);
 
     public static Loader<ResourceLoaderResult<WeightLogs>> getWeightLoader(Activity activityContext) throws MissingScopesException, TokenExpiredException {

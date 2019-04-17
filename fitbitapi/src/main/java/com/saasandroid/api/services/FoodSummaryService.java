@@ -12,7 +12,7 @@ import android.content.Loader;
 
 public class FoodSummaryService {
 
-    private final static String FOOD_URL = "https://api.fitbit.com/1/user/-/foods/log/date/today.json";
+    public final static String FOOD_URL = "https://api.fitbit.com/1/user/-/foods/log/date/today.json";
     private static final ResourceLoaderFactory<FoodLogs> FOOD_LOADER_FACTORY = new ResourceLoaderFactory<>(FOOD_URL, FoodLogs.class);
 
     public static Loader<ResourceLoaderResult<FoodLogs>> getFoodLoader(Activity activityContext) throws MissingScopesException, TokenExpiredException {

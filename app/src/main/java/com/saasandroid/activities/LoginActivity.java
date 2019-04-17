@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.saasandroid.models.CurrentState;
+import com.saasandroid.saasandroidlibrary.models.CurrentState;
 
 public class LoginActivity extends Activity {
     private TextView mEmail;
@@ -43,7 +43,8 @@ public class LoginActivity extends Activity {
                     alert.setMessage("Password is empty. Please try again.");
                     alert.show();
                 } else {
-                    CurrentState.getAuthentication().signIn(LoginActivity.this, mEmail.getText().toString(), mPassword.getText().toString());
+                    CurrentState.getAuthentication().signIn(LoginActivity.this, StudiesActivity.class,
+                            AccountVerificationActivity.class, mEmail.getText().toString(), mPassword.getText().toString());
                 }
             }
         });

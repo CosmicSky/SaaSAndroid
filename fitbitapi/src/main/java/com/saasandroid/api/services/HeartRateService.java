@@ -12,7 +12,7 @@ import android.content.Loader;
 
 public class HeartRateService {
 
-    private final static String HEARTRATE_URL = "https://api.fitbit.com/1/user/-/activities/heart/date/today/today.json";
+    public final static String HEARTRATE_URL = "https://api.fitbit.com/1/user/-/activities/heart/date/today/today.json";
     private static final ResourceLoaderFactory<HeartRateLogs> HEARTRATE_LOADER_FACTORY = new ResourceLoaderFactory<>(HEARTRATE_URL, HeartRateLogs.class);
 
     public static Loader<ResourceLoaderResult<HeartRateLogs>> getHeartRateLoader(Activity activityContext) throws MissingScopesException, TokenExpiredException {

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Tony Qi. All rights reserved.
 //
 
-package com.saasandroid.models;
+package com.saasandroid.saasandroidlibrary.models;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
@@ -156,6 +158,7 @@ public class FirebaseDatabaseService implements DatabaseService {
     @Override
     public <T> void addFitbitData(String type, T data) {
         DatabaseReference studyParticipantReference = mDatabase.getReference("health_data");
-        studyParticipantReference.child(CurrentState.getAuthentication().getUserId()).child(type).setValue(data);
+        studyParticipantReference.child(CurrentState.getAuthentication().getUserId()).
+                child(new Date(System.currentTimeMillis()).toString()).child(type).setValue(data);
     }
 }
