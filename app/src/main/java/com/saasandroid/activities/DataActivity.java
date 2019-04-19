@@ -38,20 +38,22 @@ public class DataActivity extends Activity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_data);
         binding.setLoading(false);
 
-        dataPagerAdapter = new DataPagerAdapter(getFragmentManager());
-        binding.viewPager.setAdapter(dataPagerAdapter);
+        if (AuthenticationManager.isLoggedIn()) {
+            dataPagerAdapter = new DataPagerAdapter(getFragmentManager());
+            binding.viewPager.setAdapter(dataPagerAdapter);
 
-        binding.viewPager.addOnPageChangeListener(
-                new ViewPager.SimpleOnPageChangeListener() {
-                    @Override
-                    public void onPageSelected(int position) {
-                        // When swiping between pages, select the
-                        // corresponding tab.
-                        getActionBar().setSelectedNavigationItem(position);
-                    }
-                });
+            binding.viewPager.addOnPageChangeListener(
+                    new ViewPager.SimpleOnPageChangeListener() {
+                        @Override
+                        public void onPageSelected(int position) {
+                            // When swiping between pages, select the
+                            // corresponding tab.
+                            getActionBar().setSelectedNavigationItem(position);
+                        }
+                    });
 
-        addTabs();
+            addTabs();
+        }
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);

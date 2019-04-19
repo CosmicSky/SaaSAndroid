@@ -67,7 +67,7 @@ public class FirebaseDatabaseService implements DatabaseService {
     @Override
     public void joinStudy(String studyId) {
         DatabaseReference studyParticipantReference = mDatabase.getReference("study_participant");
-        studyParticipantReference.child(CurrentState.getAuthentication().getUserId()).child("studies").child(studyId).setValue(true);
+        studyParticipantReference.child(CurrentState.getAuthentication().getUserId()).child("studies").push().setValue(studyId);
         DatabaseReference studyReference = mDatabase.getReference("study");
         studyReference.child(studyId).child("participants").child(CurrentState.getAuthentication().getUserId()).setValue(true);
     }
