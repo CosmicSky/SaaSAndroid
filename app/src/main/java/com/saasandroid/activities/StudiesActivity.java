@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.saasandroid.saasandroidlibrary.models.CurrentState;
 import com.saasandroid.saasandroidlibrary.models.Study;
@@ -33,6 +34,13 @@ public class StudiesActivity extends Activity {
         setContentView(R.layout.activity_studies);
 
         ListView listView = findViewById(R.id.studiesList);
+        TextView textView = findViewById(R.id.myStudiesText);
+
+        if (CurrentState.getStudyParticipant() != null) {
+            textView.setText("Welcome " + CurrentState.getStudyParticipant().getFirstName() + "!");
+        } else {
+            textView.setText("Welcome");
+        }
 
         final ArrayAdapter<Study> arrayAdapter= new ArrayAdapter<>(this, R.layout.studylist, CurrentState.getIndividualStudyList());
         if (listView != null) {

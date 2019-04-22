@@ -69,7 +69,7 @@ public class FitbitAuthentication {
 
                     .setClientCredentials(CLIENT_CREDENTIALS)
                     .setEncryptionKey(SECURE_KEY)
-                    .setTokenExpiresIn(86400L) // 24 hours
+                    .setTokenExpiresIn(31540000L) // 1 year
                     .setBeforeLoginActivity(new Intent(context, mainActivityClass))
                     .addRequiredScopes(Scope.activity, Scope.weight, Scope.heartrate, Scope.nutrition, Scope.sleep)
                     .setLogoutOnAuthFailure(true)
