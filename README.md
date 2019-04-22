@@ -19,11 +19,15 @@ SaaS Android App
 
 ## Known Bugs
 
-N/A
+1. Possible that some specific Fitbit data are not displayed/pulled correctly. Every single tab needs to be tested. Refer to activity, heartrate, sleep, nutrition, and weight API on the Fitbit Developement website for reference.
+
+2. Welcome [name] message on Studies screen does not display after initial login due to screen loading faster than Firebase Authentication processing realtime data. Firebase Authentication needs time to load all of the data.
+
+3. Older emulator/devices may have trouble loading Fitbit data.
 
 ## Known Defects
 
-1. Possible that some specific Fitbit data are not displayed/pulled correctly. Every single tab needs to be tested. Refer to activity, heartrate, sleep, nutrition, and weight API on the Fitbit Developement website for reference.
+N/A
 
 # Install Guide
 
