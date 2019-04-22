@@ -21,6 +21,12 @@ import com.saasandroid.authentication.ClientCredentials;
 import com.saasandroid.authentication.Scope;
 public class FitbitAuthentication {
 
+    /*
+      https://github.com/Stasonis/fitbit-api-example-android
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      Visit the link for all references to connecting/loading the fitbit device.
+     */
+
     /**
      * These client credentials come from creating an app on https://dev.fitbit.com.
      * <p>

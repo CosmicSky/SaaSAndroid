@@ -21,22 +21,37 @@ public class Study {
         this.id = id;
     }
 
+    /**
+     * @return study name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return study description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * @return study owner
+     */
     public Researcher getOwner() {
         return owner;
     }
 
+    /**
+     * @return study id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @return study name
+     */
     public String toString() {
         return name;
     }

@@ -35,39 +35,45 @@ public class StudyParticipant {
         this.email = email;
     }
 
+    /**
+     * @return first name of study participant
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * @return last name of study participant
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * @return birth date of study participant
+     */
     public String getBirthdate() {
         return birthdate;
     }
 
+    /**
+     * @return zip code of study participant
+     */
     public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
+    /**
+     * @return country of study participant
+     */
     public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
+    /**
+     * @return email of study participant
+     */
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }

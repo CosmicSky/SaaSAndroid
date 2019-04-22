@@ -31,22 +31,37 @@ public class Researcher {
         this.jobTitle = jobTitle;
     }
 
+    /**
+     * @return first name of researcher
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * @return last name of researcher
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * @return email of researcher
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * @return affiliation of researcher
+     */
     public String getAffiliation() {
         return affiliation;
     }
 
+    /**
+     * @return job title of researcher
+     */
     public String getJobTitle() {
         return jobTitle;
     }

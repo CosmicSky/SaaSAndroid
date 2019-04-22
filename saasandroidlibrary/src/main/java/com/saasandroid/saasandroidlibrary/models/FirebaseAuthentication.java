@@ -93,12 +93,10 @@ public class FirebaseAuthentication implements Authentication {
     }
 
     @Override
-    public boolean sendVerificationLink() {
+    public void sendVerificationLink() {
         if (mAuth.getCurrentUser() != null) {
             mAuth.getCurrentUser().sendEmailVerification();
-            return true;
         } else {
-            return false;
         }
     }
 
